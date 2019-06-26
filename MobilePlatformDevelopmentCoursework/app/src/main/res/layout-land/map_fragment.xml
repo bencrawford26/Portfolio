@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Ben Crawford - S1712082-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="100dp"
+        tools:context="MapFragment" />
+
+    <TextView
+        android:id="@+id/acknowledgement"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:text="Contains British Geological Survey materials ©NERC 2019 - S1712082"
+        android:textSize="10sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="right"
+        android:weightSum="1.0" >
+
+        <Button
+            android:id="@+id/getItemsButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Get Data" />
+
+        <Button
+            android:id="@+id/resetMarkersButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Reset Markers" />
+
+        <Button
+            android:id="@+id/filterMenuButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Filters" />
+
+        <Button
+            android:id="@+id/extremeMenuButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Extremes" />
+    </LinearLayout>
+
+</RelativeLayout>

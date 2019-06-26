@@ -1,0 +1,38 @@
+<div>
+  <h3 md-dialog-title>{{LangService.activeLanguage.dialogUpTitle}} {{data.Title}}</h3>
+  <hr>
+  <mat-dialog-content>
+
+    <div class="center-item">
+      <label for="file" class="material-icons upload-btn" *ngIf="repFileList.length == 0">
+        file_upload
+      </label>
+      <input type="file" (change)="fileInputChange($event)" name="file" id="file" multiple style="display:none;">
+    </div>
+
+    <mat-list *ngIf="repFileList.length > 0">
+      <h3 *ngIf="!finished" mat-subheader>{{totalLoaded.toFixed(2)}}MB/{{totalToLoad.toFixed(2)}}MB : {{totalProg}}% {{timeLeft}} : {{upSpeed.toFixed(2)}}MB/s</h3>
+      <h3 *ngIf="finished" mat-subheader>{{LangService.activeLanguage.dialogUpCompIn}} {{secondsElapsed}} {{LangService.activeLanguage.dialogUpSec}}</h3>
+      <mat-list-item *ngFor="let file of repFileList; let i = index">
+        <mat-icon mat-list-icon *ngIf="file.type == 'application/msword'">note</mat-icon>
+        <mat-icon mat-list-icon *ngIf="file.type != 'application/msword'">image</mat-icon>
+        <h4 mat-line>{{file.name}}</h4>
+        <p mat-line>{{file.loaded.toFixed(2)}}MB/{{file.total.toFixed(2)}}MB</p>
+        <mat-progress-spinner diameter='32' [mode]="'determinate'" [value]="file.progress"></mat-progress-spinner>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <ng-container *ngIf="!areSureQuestion">
+      <button mat-raised-button (click)="onClose()" color="warn">{{LangService.activeLanguage.dialogUpDownClose}}</button>
+    </ng-container>
+    <ng-container *ngIf="areSureQuestion">
+      <p class="are-sure-q">{{LangService.activeLanguage.dialogUpAreSure}}</p>
+      <button mat-raised-button (click)="onClose()" color="primary">{{LangService.activeLanguage.dialogUpDownYes}}</button>
+      <button mat-raised-button (click)="areSureQuestion = false" color="warn">{{LangService.activeLanguage.dialogUpDownNo}}</button>
+    </ng-container>
+
+  </mat-dialog-actions>
+</div>

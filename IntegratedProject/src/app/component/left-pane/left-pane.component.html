@@ -1,0 +1,95 @@
+
+<div *ngIf="!tableDataLoaded || DataTransferService.moveData.moveActive" class="loading-display">
+  <mat-spinner *ngIf="!timelineRetrieveErr"></mat-spinner>
+  <button *ngIf="timelineRetrieveErr" mat-raised-button color="primary" (click)="retrieveTimelines()">Retry</button>
+</div>
+
+<mat-toolbar>
+  <mat-toolbar-row>
+
+      <button 
+        [class.hide]="this.selection.selected.length != 0" 
+        [disabled]="!(this.DataTransferService.onlineObs | async)"
+        (click)="openAddDialog(LangService.activeLanguage.textInAddTimeline,'', 'create', null)" 
+        mat-raised-button color="primary"
+      >
+        {{LangService.activeLanguage.leftPaneAddBtn}}
+      </button>
+
+      <button 
+        [class.hide]="this.selection.selected.length == 0" 
+        (click)="openConfirmDialog()" 
+        mat-raised-button 
+        color="warn"
+        [disabled]="!(this.DataTransferService.onlineObs | async)"
+      >
+        {{LangService.activeLanguage.leftPaneDeleteBtn}}
+      </button>
+
+      <button 
+        [class.hide]="this.selection.selected.length != 1" 
+        (click)="openAddDialog(LangService.activeLanguage.textInEditTimeline + this.selection.selected[0].Title,this.selection.selected[0].Title,'update',this.selection.selected[0].Id)" 
+        class="icon-spacer" 
+        mat-raised-button 
+        [disabled]="!(this.DataTransferService.onlineObs | async)"
+      >
+        {{LangService.activeLanguage.leftPaneEditBtn}}
+      </button>
+    
+      <span class="spacer"></span>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{LangService.activeLanguage.leftPaneSearch}}" [(ngModel)]="filter" class="search-box">
+      <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''; applyFilter('')">
+          <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="register-table-container mat-elevation-z8">
+
+  <mat-table #tableElement id="tableElement" [dataSource]="dataSource" matSort matSortActive="CreationTimeStamp" matSortDisableClear matSortDirection="desc">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- name Column -->
+    <ng-container matColumnDef="Title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{LangService.activeLanguage.leftPaneTableTitle}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+    </ng-container>
+
+    <!-- date Column. backup date pipe | date: 'dd/MM/yy' -->
+    <ng-container matColumnDef="CreationTimeStamp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{LangService.activeLanguage.leftPaneTableDate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.CreationTimeStamp | date: 'dd/M/yy H:mm'}} </mat-cell>
+    </ng-container>
+
+    <!-- event Column -->
+    <ng-container matColumnDef="noEvents">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{LangService.activeLanguage.leftPaneTableEvents}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.noEvents }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row 
+      *matRowDef="let row; columns: displayedColumns;" 
+      [ngClass]="{'active-timeline': DataTransferService.activeTimelineKeys.includes(row.Id)}" 
+      (click)="timelineRowClick($event, row)" 
+      [@appearDisappear]
+    >
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="20" [showFirstLastButtons]="true"></mat-paginator>
+</div>

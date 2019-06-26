@@ -1,0 +1,172 @@
+<div>
+  <h3 md-dialog-title *ngIf="this.data.existingValues == null">{{LangService.activeLanguage.eventDialogTitleNew}}</h3>
+  <h3 md-dialog-title *ngIf="this.data.existingValues != null">{{LangService.activeLanguage.eventDialogTitleEdit}}</h3>
+  <hr>
+
+  <mat-dialog-content>
+    <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="full-width-form">
+          <ng-template matStepLabel>{{LangService.activeLanguage.eventDialogTitle}}</ng-template>
+
+          <mat-form-field class="full-width-field">
+            <input matInput placeholder="{{LangService.activeLanguage.eventDialogTitle}}" formControlName="titleCtrl" required>
+            <mat-error>events must have a title</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width-field">
+            <mat-select placeholder="{{LangService.activeLanguage.eventDialogSeverity}}" [value]="'Low'" formControlName="severityCtrl">
+              <mat-option value="Low" selected='true'>{{LangService.activeLanguage.eventDialogSeverityL}}</mat-option>
+              <mat-option value="Medium">{{LangService.activeLanguage.eventDialogSeverityM}}</mat-option>
+              <mat-option value="High">{{LangService.activeLanguage.eventDialogSeverityH}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="full-width-field">
+            <mat-chip-list #chipList>
+              <mat-chip 
+                *ngFor="let tag of tags" [selectable]="selectable"
+                [removable]="removable" (remove)="remove(tag)" [color]="'primary'"
+              >
+                {{tag.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input 
+                placeholder="{{LangService.activeLanguage.eventDialogTags}}"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" 
+              />
+            </mat-chip-list>
+          </mat-form-field>
+
+          <mat-form-field class="full-width-field">
+            <textarea matInput placeholder="{{LangService.activeLanguage.eventDialogDescription}}" formControlName="descriptionCtrl" required></textarea>
+            <mat-error>{{LangService.activeLanguage.eventDialogDescError}}</mat-error>
+          </mat-form-field>
+
+          <div class="stepper-btn-block">
+            <button mat-raised-button matStepperNext color="primary">{{LangService.activeLanguage.eventDialogNext}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <mat-checkbox
+          class="example-margin"
+          [(ngModel)]="locationDisabled"
+          (change)="disableLocationChange($event)"
+        >
+          {{LangService.activeLanguage.eventDialogDisableLoc}}
+        </mat-checkbox>
+
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>{{LangService.activeLanguage.eventDialogLocation}}</ng-template>
+
+          <agm-map *ngIf="!locationDisabled" [styles]="mapStyles" [latitude]="startViewLat" [longitude]="startViewLng" [zoom]="startViewZoom" (mapClick)="onChooseLocation($event);">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+
+          <mat-form-field *ngIf="!locationDisabled">
+            <input matInput placeholder="lat" (click)="mapManualInput()" (wheel)="mapManualInput()" (keyup)="mapManualInput()" formControlName="latitudeCtrl" type="number" required>
+            <mat-hint>{{LangService.activeLanguage.eventLatReq}}</mat-hint>
+            <mat-error>
+              {{LangService.activeLanguage.eventLatErr}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="!locationDisabled">
+            <input matInput placeholder="lng" (click)="mapManualInput()" (wheel)="mapManualInput()" (keyup)="mapManualInput()" formControlName="longitudeCtrl" type="number" required>
+            <mat-hint>{{LangService.activeLanguage.eventLonReq}}</mat-hint>
+            <mat-error>
+              {{LangService.activeLanguage.eventLonErr}}
+            </mat-error>
+          </mat-form-field>
+
+          <div class="stepper-btn-block">
+            <button mat-raised-button matStepperPrevious color="warn">{{LangService.activeLanguage.eventDialogBack}}</button>
+            <button mat-raised-button matStepperNext color="primary">{{LangService.activeLanguage.eventDialogNext}}</button>
+          </div>
+        </form>
+        
+      </mat-step>
+
+      <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup" class="full-width-form">
+          <ng-template matStepLabel>{{LangService.activeLanguage.eventDialogDate}}</ng-template>
+
+          <mat-form-field>
+            <input 
+              [min]="minDate" 
+              [max]="maxDate" 
+              matInput 
+              [value]="existingDateTime" 
+              [matDatepicker]="picker" 
+              placeholder="date" 
+              (dateInput)="dateEvent($event)" 
+              (dateChange)="dateEvent($event)"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input placeholder="time" matInput type="time" (change)="timeEvent($event)" [value]="timeString" required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width-field hack-form-field">
+            <input matInput formControlName="dateTimeCtrl"  required>
+            <mat-hint *ngIf="afterTimeLimit && !beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeAfter}} {{afterTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-hint>
+            <mat-error *ngIf="afterTimeLimit && !beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeAfter}} {{afterTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-error>
+            <mat-hint *ngIf="!afterTimeLimit && beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeBefore}} {{beforeTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-hint>
+            <mat-error *ngIf="!afterTimeLimit && beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeBefore}} {{beforeTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-error>
+            <mat-hint *ngIf="afterTimeLimit && beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeAfter}} {{afterTimeLimit | date: 'd/M/yy, HH:mm'}} &amp; {{LangService.activeLanguage.eventDialogMustBeBefore}} {{beforeTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-hint>
+            <mat-error *ngIf="afterTimeLimit && beforeTimeLimit">{{LangService.activeLanguage.eventDialogMustBeAfter}} {{afterTimeLimit | date: 'd/M/yy, HH:mm'}} &amp; {{LangService.activeLanguage.eventDialogMustBeBefore}} {{beforeTimeLimit | date: 'd/M/yy, HH:mm'}}</mat-error>
+          </mat-form-field>
+
+          <div class="stepper-btn-block">
+            <button mat-raised-button matStepperPrevious color="warn">{{LangService.activeLanguage.eventDialogBack}}</button>
+            <button mat-raised-button matStepperNext color="primary">{{LangService.activeLanguage.eventDialogNext}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Review</ng-template>
+          
+          <div>
+            {{LangService.activeLanguage.eventDialogTitle}} : {{firstFormGroup.value.titleCtrl}}
+          </div>
+
+          <div>
+            {{LangService.activeLanguage.eventDialogDescription}} : {{firstFormGroup.value.descriptionCtrl}}
+          </div>
+
+          <div>
+            {{LangService.activeLanguage.eventDialogSeverity}} : {{firstFormGroup.value.severityCtrl}}
+          </div>
+
+          <div>
+            {{LangService.activeLanguage.eventDialogTags}} : <span *ngFor="let tag of tags">{{tag.name}},&nbsp;</span>
+          </div>
+
+          <div>
+            {{LangService.activeLanguage.eventDialogDate}} : {{fourthFormGroup.value.dateTimeCtrl | date: 'd/M/yy, HH:mm'}}
+          </div>
+
+          <agm-map *ngIf="!locationDisabled" [styles]="mapStyles" [latitude]="startViewLat" [longitude]="startViewLng" [zoom]="startViewZoom">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+          
+        <div class="stepper-btn-block">
+          <button mat-raised-button matStepperPrevious color="warn">{{LangService.activeLanguage.eventDialogBack}}</button>
+          <button *ngIf="createOrUpdate == 'create'" mat-raised-button (click)="onCloseConfirm()" color="primary">{{LangService.activeLanguage.eventDialogCreate}}</button>
+          <button *ngIf="createOrUpdate == 'update'" mat-raised-button (click)="onCloseConfirm()" color="primary">{{LangService.activeLanguage.eventDialogUpdate}}</button>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </mat-dialog-content>
+</div>

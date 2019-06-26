@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Ben Crawford - S1712082-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0" >
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Get Data" />
+
+        <Button
+            android:id="@+id/resetListButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Reset List" />
+
+        <Button
+            android:id="@+id/filterMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Filters" />
+
+        <Button
+            android:id="@+id/extremeMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/top_buttons"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Extremes" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/acknowledgement"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/buttonLayout"
+        android:gravity="center_horizontal"
+        android:text="Contains British Geological Survey materials ©NERC 2019 - S1712082"
+        android:textSize="10sp" />
+
+    <ExpandableListView
+        android:id="@+id/exList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+</RelativeLayout>

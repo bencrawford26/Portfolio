@@ -1,0 +1,126 @@
+:host ul::before, :host ul::after{
+	content: '';
+	position: absolute; top: 0; left: 50%;
+	border-left: 4px solid #888;
+	width: 0; height: 60px;
+}
+
+ul {
+	padding: 60px 0 0 0; 
+  	position: relative;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	display: flex;
+	justify-content: center;
+}
+
+li {
+	float: left; 
+	text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 60px 15px 0 15px;
+}
+
+/*use ::before and ::after to draw the connectors*/
+li::before, li::after{
+	content: '';
+	position: absolute; top: 0; right: 50%;
+	border-top: 4px solid #888;
+	width: 50%; height: 60px;
+}
+
+li::after{
+	right: auto; left: 50%;
+	border-left: 4px solid #888;
+}
+
+/*remove left-right connectors from elements without any siblings*/
+li:only-child::after, li:only-child::before {
+	display: none;
+}
+
+/*Remove space from the top of single children*/
+li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and right connector from last child*/
+li:first-child::before, li:last-child::after{
+	border: 0 none;
+}
+
+/*vertical connector to the last nodes*/
+li:last-child::before{
+	border-right: 4px solid #888;
+	border-radius: 0 8px 0 0;
+}
+li:first-child::after{
+	border-radius: 8px 0 0 0;
+}
+
+/*downward connectors from parents*/
+ul ul::before{
+	content: '';
+	position: absolute; top: 0; left: 50%;
+	border-left: 4px solid #888;
+	width: 0; height: 60px;
+}
+
+li a{
+	border: 6px solid #888;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: #666;
+	font-family: arial, verdana, tahoma;
+	font-size: 11px;
+	display: inline-block;
+	border-radius: 8px;
+}
+
+mat-expansion-panel {
+	width: 550px;
+	margin: auto;
+	z-index: 5;
+	position: relative;
+    box-shadow: none;
+    transition: box-shadow 0.3s, width 0.12s !important;
+	transition-timing-function: ease-in-out !important;
+}
+mat-expansion-panel-header {
+	font-size: 1.29em;
+}
+	
+mat-panel-description {
+	position: absolute;
+	right: 50px;
+}
+
+mat-panel-title p {
+	font-weight: bold;
+	margin: 0;
+	max-width: 300px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+mat-expansion-panel {
+	transition: width 0.12s;
+  transition-timing-function: ease-in-out;
+}
+
+.open-expansion-panel {
+	width: 900px;
+}
+
+.open-expansion-panel mat-expansion-panel-header mat-panel-title p {
+	max-width: 650px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.42;       
+  max-height: 1.42*2;       
+}

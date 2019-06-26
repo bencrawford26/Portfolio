@@ -1,0 +1,43 @@
+:host {
+  overflow: auto !important;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  border-right: 1px solid #ccc;
+}
+
+.register-table-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+.icon-spacer {
+  margin: 0 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-table {
+  flex: 1 1 auto;
+}
+
+mat-form-field{
+  transform: scale(0.9);
+  margin-bottom: -10px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+mat-row {
+  cursor: pointer;
+}

@@ -1,0 +1,69 @@
+<mat-toolbar style="border-bottom: 1px solid #ccc" color="primary">
+    <div class="title-container" (click)="resetAppConfirm()">
+        <span class="title-text">Aileron</span>
+        <img src="assets/image/logo.png" alt="">
+        <span class="title-text">Airways</span>
+        <span class="title-text hide-mobile"> | {{LangService.activeLanguage.identityBarTitle}}</span>
+    </div>
+    <span class="spacer"></span>
+    <button *ngIf="!(this.DataTransferService.onlineObs | async)" mat-mini-fab color="warn" matTooltip="No connection">
+        <mat-icon aria-label="Example icon-button with a heart icon">signal_wifi_off</mat-icon>
+    </button>
+
+    <button *ngIf="(htmlTag.webkitRequestFullscreen || htmlTag.requestFullscreen || htmlTag['mozRequestFullScreen'])" mat-mini-fab (click)="toggleFullScreen()" color="white" matTooltip="{{LangService.activeLanguage.identityFullScreen}}">
+        <mat-icon *ngIf="!fullScreenActive" aria-label="Example icon-button with a heart icon">fullscreen</mat-icon>
+        <mat-icon *ngIf="fullScreenActive" aria-label="Example icon-button with a heart icon">fullscreen_exit</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="white" [matMenuTriggerFor]="languageMenu" matTooltip="{{LangService.activeLanguage.identityLangSelect}}">
+        <mat-icon aria-label="Example icon-button with a heart icon">language</mat-icon>
+    </button>
+
+    <mat-menu #languageMenu="matMenu">
+
+        <button mat-menu-item (click)="LangService.setLanguage('En')">
+            <span>En</span>
+        </button>
+
+        <button mat-menu-item (click)="LangService.setLanguage('Es')">
+            <span>Es</span>
+        </button>
+
+        <button mat-menu-item (click)="LangService.setLanguage('De')">
+            <span>De</span>
+        </button>
+
+        <button mat-menu-item (click)="LangService.setLanguage('Fr')">
+            <span>Fr</span>
+        </button>
+
+    </mat-menu>
+    
+    <button mat-mini-fab color="accent"  [matMenuTriggerFor]="themeMenu" matTooltip="{{LangService.activeLanguage.identityChangeTheme}}">
+        <mat-icon aria-label="Example icon-button with a heart icon">format_color_fill</mat-icon>
+    </button>
+
+    <mat-menu #themeMenu="matMenu">
+
+        <button mat-menu-item (click)="DataTransferService.setTheme('indigo-pink')">
+            <span>{{LangService.activeLanguage.identityIndigoPink}}</span>
+        </button>
+
+        <button mat-menu-item (click)="DataTransferService.setTheme('purple-green')">
+            <span>{{LangService.activeLanguage.identityPurpleGreen}}</span>
+        </button>
+
+        <button mat-menu-item (click)="DataTransferService.setTheme('deeppurple-amber')">
+            <span>{{LangService.activeLanguage.identityPurpleAmber}}</span>
+        </button>
+
+        <button mat-menu-item (click)="DataTransferService.setTheme('pink-bluegrey')">
+            <span>{{LangService.activeLanguage.identityPinkGrey}}</span>
+        </button>
+
+    </mat-menu>
+
+    <button mat-mini-fab (click)="DataTransferService.toggleRegisterExpanded()" color="white" matTooltip="{{LangService.activeLanguage.identityToggleRegister}}">
+        <mat-icon aria-label="Example icon-button with a heart icon">menu</mat-icon>
+    </button>
+</mat-toolbar>

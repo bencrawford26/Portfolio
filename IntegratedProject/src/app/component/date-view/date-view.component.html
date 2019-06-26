@@ -1,0 +1,34 @@
+<ul class="date-view-top-ul">
+  <li *ngFor="let event of sortedTimelineData; let i = index">
+    <mat-expansion-panel
+      [hideToggle]="true"
+      (opened)="panelOpenState[i] = true" 
+      (closed)="panelOpenState[i] = false" 
+      [class.open-expansion-panel]="panelOpenState[i]"
+      [class.event-highlight]="search(event)"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>{{event.Title}}</p>
+        </mat-panel-title>
+        <div 
+          class="severity-display"
+          [class.severity-display-low]="event.Severity == 'Low'"
+          [class.severity-display-medium]="event.Severity == 'Medium'"
+          [class.severity-display-high]="event.Severity == 'High'"
+        >
+          <span *ngIf="event.Severity == 'Low'">!</span>
+          <span *ngIf="event.Severity == 'Medium'">!!</span>
+          <span *ngIf="event.Severity == 'High'">!!!</span>
+        </div>
+        <mat-panel-description>
+          {{event.EventDateTime | date: 'd/M/yy, HH:mm '}}
+          <div class="location-icon" *ngIf="event.LocationLat == 'null'">
+            <mat-icon>location_off</mat-icon>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+    <app-event-item [event]="event" [timelineId]="timelineId" [editTabVisible]="false" [mapTabVisible]="true"></app-event-item>
+    </mat-expansion-panel>
+  </li>
+</ul>

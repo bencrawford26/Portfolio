@@ -1,0 +1,27 @@
+<app-identity-bar id="top-bar"></app-identity-bar>
+
+<div class="pane-container" id="pane-container">
+
+  <app-left-pane  [@slideInOut]="registerVisible"></app-left-pane>
+
+  <mat-tab-group class="timeline-viewpane-tabgroup" *ngIf="DataTransferService.activeTimelineKeys.length > 0" [(selectedIndex)]="selectedTabIndex">
+    <ng-container *ngFor="let timelineKey of DataTransferService.activeTimelineKeys">
+      <mat-tab *ngIf="DataTransferService.activeTimelines[timelineKey]" [disabled]="DataTransferService.moveData.moveActive">
+        <ng-template mat-tab-label>
+          <div class="tab-label">
+            <span>{{DataTransferService.activeTimelines[timelineKey].Title}}</span>
+            <i class="material-icons close-tab-btn" (click)="(!DataTransferService.moveData.moveActive)?timelineTabClose($event, timelineKey):null;">highlight_off</i>
+          </div>
+        </ng-template>
+        <ng-template matTabContent>
+          <app-right-pane [timelineId]="timelineKey"></app-right-pane>
+        </ng-template>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+
+  <div class="center-item" *ngIf="DataTransferService.activeTimelineKeys.length < 1" style="width: 100%;">
+    <span>{{LangService.activeLanguage.selectTimeline}}</span>
+  </div>
+
+</div>

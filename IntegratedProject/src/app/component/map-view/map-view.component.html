@@ -1,0 +1,38 @@
+<agm-map style="height:100%;" [styles]="mapStyles" [latitude]="0" [longitude]="0" [zoom]="2">
+
+  <ng-container *ngFor="let event of sortedTimelineData">
+    <agm-marker *ngIf="event.LocationLng != 'null' && (!event.Title.toLowerCase().includes(DataTransferService.activeTimelines[timelineId].eventSearchTerm.toLowerCase()) || DataTransferService.activeTimelines[timelineId].eventSearchTerm =='')"
+      [latitude]="event.LocationLat" 
+      [longitude]="event.LocationLng" 
+      [iconUrl]="{url: '/assets/image/gm-icon.png', scaledSize: {height: 29.6,width: 18.3}}"
+    >
+      <agm-snazzy-info-window [maxWidth]="1100" [maxHeight]="500" [closeWhenOthersOpen]="true">
+        <ng-template>
+          <div class="header">
+            <h3>{{event.Title}}</h3>
+            <span>{{event.EventDateTime | date: 'd/M/yy, HH:mm '}}</span>
+          </div>
+          <hr>
+          <app-event-item [event]="event" [timelineId]="timelineId" [editTabVisible]="false" [mapTabVisible]="false"></app-event-item>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+    <agm-marker *ngIf="event.LocationLng != 'null' && (event.Title.toLowerCase().includes(DataTransferService.activeTimelines[timelineId].eventSearchTerm.toLowerCase()) && DataTransferService.activeTimelines[timelineId].eventSearchTerm !='')"
+      [latitude]="event.LocationLat" 
+      [longitude]="event.LocationLng" 
+      [iconUrl]="{url: '/assets/image/gm-icon-found.png', scaledSize: {height: 29.6,width: 18.3}}"
+    >
+      <agm-snazzy-info-window [maxWidth]="1100" [maxHeight]="500" [closeWhenOthersOpen]="true">
+        <ng-template>
+          <app-event-item [event]="event" [timelineId]="timelineId" [editTabVisible]="false" [mapTabVisible]="false"></app-event-item>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </ng-container>
+  <agm-polyline  [strokeColor]="'#2196f3'">
+      <ng-container *ngFor="let event of sortedTimelineData">
+        <agm-polyline-point *ngIf="event.LocationLng != 'null'" [latitude]="event.LocationLat" [longitude]="event.LocationLng">
+        </agm-polyline-point>
+      </ng-container>
+  </agm-polyline>
+</agm-map>

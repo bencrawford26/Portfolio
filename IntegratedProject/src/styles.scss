@@ -1,0 +1,219 @@
+* {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/font/material-icons.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #eaeaea; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.mat-expansion-panel-body {
+  padding: 0!important;
+}
+
+.mat-tab-label {
+  min-width: 80px!important;
+}
+
+.mat-card {
+  padding-top: 0;
+}
+
+/* takes shadow off table should prolly change for name tag of element */
+.mat-elevation-z8 {
+  border-top: solid 1px #e0e0e0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+
+/* takes shadow off table should prolly change for name tag of element */
+.mat-elevation-z8 {
+  border-top: solid 1px #e0e0e0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* below is css for left pane table to space things out a bit better */
+.cdk-column-select {
+  flex: 0 0 10% !important;
+  padding: 0 2px 0 0!important;
+}
+.cdk-column-Title {
+  flex: 0 0 40% !important;
+  padding: 0 4px 0 0!important;
+}
+.cdk-column-CreationTimeStamp {
+  flex: 0 0 30% !important;
+  padding: 0 4px 0 4px!important;
+}
+.cdk-column-Events {
+  flex: 0 0 20% !important;
+  padding: 0 0 0 4px!important;
+}
+
+/* below hides items per page on paginator form left pane*/
+.mat-paginator-page-size {
+  display: none !important;
+}
+
+/* loading display here since its used on multiple components*/
+.loading-display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-display-clear {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.loading-display p{
+  position: absolute;
+  align-self: center;
+  font-weight: bold;
+  margin: auto;
+}
+
+.mat-tab-body-wrapper {
+  flex-grow: 1;
+}
+
+.si-content-wrapper {
+  padding: 0px !important;
+}
+
+.si-content-wrapper .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.si-content-wrapper .header h3 {
+  max-width: 70%;
+  width: 70%;
+  margin: 5px 0 5px 10px;
+}
+
+.si-content-wrapper .header span {
+  max-width: 30%;
+  width: 70%;
+  margin: 5px 30px 5px 0;
+  text-align: right;
+}
+
+//severity display
+.severity-display {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+	border-radius: 100%;
+	height: 28px;
+	width: 28px;
+	color: black;
+}
+
+.severity-display-low {
+    background: #888;
+}
+
+.severity-display-medium {
+    background: #ffd740;
+}
+
+.severity-display-high {
+    background: #f44336;
+}
+
+.location-icon {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+	border-radius: 100%;
+	height: 28px;
+	width: 28px;
+	margin: auto;
+	letter-spacing: -1px;
+  color: white;
+  background-color: #f44336;
+  margin-left: 8px;
+}
+
+mat-ink-bar {
+  height: 4px !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+@media (max-width: 850px) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+.hack-form-field .mat-input-wrapper .mat-input-underline,
+.hack-form-field .mat-input-wrapper .mat-input-flex {
+  display: none !important;
+}

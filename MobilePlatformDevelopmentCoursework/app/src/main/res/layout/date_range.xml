@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--Ben Crawford - S1712082-->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From:"/>
+
+        <EditText
+            android:id="@+id/day_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:hint="Day" />
+
+
+        <EditText
+            android:id="@+id/month_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:hint="Month" />
+
+        <EditText
+            android:id="@+id/year_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textAlignment="center"
+            android:hint="Year" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To:"/>
+
+        <EditText
+            android:id="@+id/day_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:hint="Day" />
+
+        <EditText
+            android:id="@+id/month_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:hint="Month" />
+
+        <EditText
+            android:id="@+id/year_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textAlignment="center"
+            android:hint="Year" />
+    </LinearLayout>
+
+</LinearLayout>

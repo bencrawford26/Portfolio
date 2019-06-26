@@ -1,0 +1,18 @@
+<div>
+  <h3 md-dialog-title>{{LangService.activeLanguage.confirmConfirm}}</h3>
+  <hr>
+  <mat-dialog-content>
+    <p>{{data.question}}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions *ngIf="!data.eventWithChildren">
+    <button mat-raised-button (click)="onCloseConfirm('confirm')" color="primary">{{LangService.activeLanguage.confirmConfirm}}</button>
+    <button mat-raised-button (click)="onCloseCancel()" color="warn">{{LangService.activeLanguage.confirmCancel}}</button>
+  </mat-dialog-actions>
+  <mat-dialog-actions *ngIf="data.eventWithChildren">
+    <button mat-raised-button (click)="onCloseConfirm('deleteEvent')" color="primary">{{LangService.activeLanguage.confirmOnlyEvent}}</button>
+    <button mat-raised-button (click)="onCloseConfirm('confirm')" color="primary">{{LangService.activeLanguage.confirmAllEvent}}</button>
+    <div style="margin-top:10px;">
+      <button mat-raised-button (click)="onCloseCancel()" color="warn">{{LangService.activeLanguage.confirmCancel}}</button>
+    </div>
+  </mat-dialog-actions>
+</div>

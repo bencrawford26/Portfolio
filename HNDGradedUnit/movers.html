@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript and The Genetic Algorithm</title>
+
+<!--Bootstrap & CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+</head>
+
+<body>
+<nav class="navbar-fixed-top">
+  <div class="container-fluid-nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <!-- button for collapsed nav -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNav1" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JS & GA</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="topFixedNav1">
+            <ul class="nav navbar-nav">
+        <!-- main links for site -->
+        <li class="navbar-link"><a href="index.html">Home</a></li>
+        <li class="navbar-link"><a href="smartRockets.html">Smart Rockets</a></li>
+        <li class="navbar-link"><a href="asteroids.html">Asteroids</a></li>
+        <li class="active"><a href="extras.html">Extras</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+      	<!-- right nav link for contact -->
+        <li class="right-navbar-link"><a href="contact.html">Contact</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- main content -->
+<div class="container-fluid-frame">
+	<div class="container-fluid-main">
+    
+    	<!-- heading for page -->
+    	<h1 class="h1-Apps">Walkers</h1>
+        
+        <!-- row used to hold introductory text -->	
+    	<p class="extras-intro text-center">One of the main focuses of <a href="http://natureofcode.com/book/introduction/">The Nature Of Code</a> book is to familiarize its readers with simulating physics engines. At the early stages of the book this was reinforced by creating several different simulations of walkers (an individual pixel that is redrawn randomly around the screen to give the impression of movement) and movers (a circle which is drawn on screen that responds to things in the environmet or has a set movement path). Each application gets slightly more complicated or robust as the exercises move forward. I have created this page to store all of these apps and explain the features and differences between each one.</p>
+        
+        <!-- hr used to seperate rows -->
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!-- column to hold extra navigation -->
+        	<div class="col-md-3">
+        	<ul class="extra-nav">
+        		<li class="extra-link"><a href="extras.html">Extras - Home</a></li>
+        		<li class="extra-active"><a href="movers.html">Walkers and Movers</a></li>
+        		<li class="extra-link"><a href="forces.html">Forces</a></li>
+        		<li class="extra-link"><a href="rotation.html">Rotation</a></li>
+        		<li class="extra-link"><a href="noise.html">Perlin Noise</a></li>
+        		<li class="extra-link"><a href="misc.html">Misc.</a></li>
+        	</ul>
+        	</div>
+
+			<!--column used to hold firstWalker app -->
+            <div class="col-md-4">
+            	<div class="walker-holder">
+            		<iframe class="walker" src="js/extras/walkers&movers/firstWalker/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!--column used to hold text explaining firstWalker app -->
+            <div class="col-md-5">
+            	<p class="extras-intro text-center">Here is the first example of a Random Walker I created for this project. I used this first as it is the "classic" example of a random walker, a random number between 0 and 4 is generated for each frame of animation. A simple series of coniditional statements is then used to determine which direction the walker should move in (up, down, left or right).</p>
+            </div>
+        </div>
+        
+        <!-- hr used to seperate rows -->
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!-- column used to hold downAndRightWalker app -->
+            <div class="col-md-3">
+            	<div class="walker-holder">
+            		<iframe class="walker" src="js/extras/walkers&movers/downAndRightWalker/index.html"></iframe>
+                </div>
+            </div>
+            <!--column used to hold text explaining downAndRightWalker app -->
+            <div class="col-md-3">
+            	<p class="extras-intro text-center">This walker was created to show my understanding of probability. Just as before the walker has a chance to move in any direction but the condtional statements dictate that the walker has a higher chance to move down or right rather than anywhere else. (hence why the walker in this example almost always moves its way off to the bottom right of the screen)</p>
+            </div>
+            
+            <!-- column used to hold noiseWalker app -->
+            <div class="col-md-3">
+            	<div class="walker-holder">
+            		<iframe class="walker" src="js/extras/walkers&movers/NoiseWalker/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!--column used to hold text explaining noiseWalker app -->
+            <div class="col-md-3">
+            	<p class="extras-intro text-center">Finally, this example of a random walker uses <a href="noise.html">Perlin Noise</a> to calculate it's direction and the size of each "step" it takes. This was the first example of noise that I had used and as you can see it produces much smoother random values than the basic random function used in the "classic" walker. More details and examples of this can be found on the <a href="noise.html">Perlin Noise</a> page.</p>
+            </div>
+        </div>
+        
+        <!--Movers-->
+        
+        <!-- heading for page -->
+    	<h1 class="h1-Apps">Movers</h1>
+        
+        <!-- hr used for seperating rows -->
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!-- column used to hold noiseMover app -->
+        	<div class="col-md-3">
+            	<div class="walker-holder">
+            		<iframe class="walker" src="js/extras/walkers&movers/NoiseMover/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!--column used to hold text explaining noiseMover app -->
+            <div class="col-md-3">
+            	<p class="extras-intro text-center">This example shows a mover object with it's location being governed by <a href="noise.html">Perlin Noise</a>. This is very similar to the previous walker example shown above but the background in this example is wiped each time the mover is drawn which removes the movers trail.</p>
+            </div>
+            
+            <!-- column used to hold mouseMover app -->
+            <div class="col-md-3">
+            	<div class="walker-holder">
+                	<iframe class="walker" src="js/extras/walkers&movers/MouseMover/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!--column used to hold text explaining mouseMover app -->
+            <div class="col-md-3">
+            	<p class="extras-intro text-center">Here we have a mover object which is constantly accelerating towards the mouse. Wherever you position your mouse within that canvas the mover will set its course for! The mover never stops because it will always overshoot the mouses' location and have to turn back.</p>
+            </div>
+                        
+        </div>
+        
+        <!-- hr used for seperating rows -->
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!-- column used to hold windMovers app -->
+        	<div class="col-md-6">
+            	<div class="walker-holder">
+            		<iframe class="walker" src="js/extras/walkers&movers/WindMovers/index.html"></iframe>
+                </div>
+            </div>
+            <!--column used to hold text explaining windMovers app -->
+            <div class="col-md-6">
+            	<p class="extras-intro text-center">Last of all, this time there is an array of mover objects being pushed around the screen by two seperate "wind forces" (one from the top left of the screen and one from the bottom right). I used an array in the example to help visualize the wind current being simulated. Also, the mover objects vary in size and mass so some are affected by the wind force more than others. You'll notice this much more after the simulation runs for a while and the movers become wildly dispersed and lose their pattern.</p>
+            </div>
+                        
+        </div>
+    </div><!--container-fluid-main-->
+</div><!--container-fluid-frame-->
+
+<!--footer-->
+<!--intended to hold links but ran out of development time -->
+<div class="container-fluid-bottom-links">
+	
+</div>
+<!-- div to hold copyright statement -->
+<div class="footer">
+	<p class="copyright-state">&copy; Ben Crawford 2017</p>
+</div>
+
+</body>
+</html>

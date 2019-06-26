@@ -1,0 +1,18 @@
+<div>
+  <h3 md-dialog-title>{{data.dialogTitle}}</h3>
+  <hr>
+  <form [formGroup]="firstFormGroup">
+    <mat-dialog-content>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="" formControlName="textCtrl" required>
+          <span matSuffix *ngIf="suffix">{{suffix}}</span>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onCloseConfirm()" color="primary" type="submit" [disabled]="firstFormGroup.value.textCtrl.length<1">{{LangService.activeLanguage.textInOk}}</button>
+      <button mat-raised-button (click)="onCloseCancel()" color="warn">{{LangService.activeLanguage.textInCancel}}</button>
+    </mat-dialog-actions>
+  </form>
+</div>

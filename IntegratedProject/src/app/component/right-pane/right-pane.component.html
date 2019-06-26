@@ -1,0 +1,86 @@
+<div *ngIf="timelineLoading" class="loading-display">
+  <mat-spinner diameter='80'></mat-spinner>
+</div>
+<div class="view-container" [class.noOverflow]="DataTransferService.activeTimelines[timelineId].viewOption == 'Tree'">
+  
+  <div *ngIf="DataTransferService.activeTimelines[timelineId].TimelineEvents.length < 1" class="center-item">
+    <button mat-fab color="primary" (click)="openEventDialog()" matTooltip="{{LangService.activeLanguage.rightPaneAdd}}">
+      <mat-icon aria-label="Button with an add icon">add</mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngIf="DataTransferService.activeTimelines[timelineId].TimelineEvents.length > 0">
+    <app-date-view [timelineId]="timelineId" *ngIf="DataTransferService.activeTimelines[timelineId].viewOption == 'Date'"></app-date-view>
+    <app-map-view [timelineId]="timelineId" *ngIf="DataTransferService.activeTimelines[timelineId].viewOption == 'Map'"></app-map-view>
+    <app-tree-view [timelineId]="timelineId" *ngIf="DataTransferService.activeTimelines[timelineId].viewOption == 'Tree'"></app-tree-view>
+  </ng-container>
+
+  <mat-card 
+    class="timeline-tools" 
+    *ngIf="DataTransferService.activeTimelines[timelineId].TimelineEvents.length > 0 && !DataTransferService.moveData.moveActive" 
+    (touchstart)="stopPropagation($event)"
+    [class.closed-timeline-tools]="!eventToolsExpanded"
+    [class.expanded-timeline-tools]="eventToolsExpanded"
+  >
+
+    <div class="full-width-container" *ngIf="!eventToolsExpanded" (click)="eventToolsExpanded = true;">
+      <i class="material-icons open-tools-btn">open_with</i>
+    </div>
+
+    <div class="full-width-container" *ngIf="eventToolsExpanded">
+      <i class="material-icons close-tools-btn" (click)="eventToolsExpanded = false;">highlight_off</i>
+
+      <div class="form-field-container">
+        
+        <div class="half-width-form-fields" style="padding-right: 4px;">
+
+          <mat-form-field>
+            <mat-select placeholder="View" [(value)]="DataTransferService.activeTimelines[timelineId].viewOption">
+              <mat-option value="Tree" selected='true'>{{LangService.activeLanguage.rightPaneTree}}</mat-option>
+              <mat-option value="Date">{{LangService.activeLanguage.rightPaneDate}}</mat-option>
+              <mat-option *ngIf="(this.DataTransferService.onlineObs | async)" value="Map">{{LangService.activeLanguage.rightPaneMap}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{LangService.activeLanguage.rightPaneSearch}}" [(ngModel)]="DataTransferService.activeTimelines[timelineId].eventSearchTerm">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{LangService.activeLanguage.rightPaneTagSearch}}" [(ngModel)]="DataTransferService.activeTimelines[timelineId].eventTagSearchTerm">
+          </mat-form-field>
+
+        </div>
+
+        <div class="half-width-form-fields"  style="padding-left: 4px;">
+
+          <button 
+            (click)="openEventDialog()"
+            mat-raised-button color="primary"
+            *ngIf="DataTransferService.activeTimelines[timelineId].viewOption == 'Tree'"
+            class="add-root-event-btn"
+          >
+            {{LangService.activeLanguage.rightPaneAddEvent}}
+          </button>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="{{LangService.activeLanguage.rightPaneAfterDate}}" [(ngModel)]="DataTransferService.activeTimelines[timelineId].eventAfterDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="{{LangService.activeLanguage.rightPaneBeforeDate}}" [(ngModel)]="DataTransferService.activeTimelines[timelineId].eventBeforeDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      
+      
+    </div>
+  </mat-card>
+
+</div>

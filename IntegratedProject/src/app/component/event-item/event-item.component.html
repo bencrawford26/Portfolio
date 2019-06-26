@@ -1,0 +1,171 @@
+<mat-card>
+  <mat-card-content (click)="tryResize($event)">
+    <mat-tab-group class="demo-tab-group" dynamicHeight='false'>
+      <mat-tab label="Tab 1">
+        <ng-template mat-tab-label>
+          <mat-icon  (touchstart)="setHeadingTouch()" (touchend)="unsetHeadingTouch()">subject</mat-icon>
+        </ng-template>
+        <div class="description-tab">
+          <div class="description-container">
+            {{event.Description}}
+          </div>
+            <!-- 
+            <textarea name="" id="" cols="90" rows="40">
+              {{event | json}} 
+            </textarea>
+            -->
+          <div class="tag-container">
+            <mat-chip-list>
+              <mat-chip 
+                *ngFor="let tag of event.Tags; let i = index"  
+                color="primary" 
+                selected="true"
+                (click)="DataTransferService.activeTimelines[timelineId].eventTagSearchTerm = tag.name"
+              >
+                {{tag.name}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 2" *ngIf="mapTabVisible && event.LocationLng != 'null' && (this.DataTransferService.onlineObs | async)">
+        <ng-template mat-tab-label>
+          <mat-icon (touchstart)="setHeadingTouch()" (touchend)="unsetHeadingTouch()">add_location</mat-icon>
+        </ng-template>
+        <div class="map-tab">
+          <agm-map 
+            [styles]="mapStyles"
+            (mousemove)="stopPropagation($event)"
+            (mousedown)="stopPropagation($event)" 
+            (wheel)="stopPropagation($event)"
+            (touchstart)="stopPropagation($event)" 
+            (touchmove)="stopPropagation($event)" 
+            #mapElement 
+            [latitude]="event.LocationLat" 
+            [longitude]="event.LocationLng" 
+            [zoom]="7"
+          >
+            <agm-marker [latitude]="event.LocationLat" [longitude]="event.LocationLng"></agm-marker>
+          </agm-map>
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 3">
+        <ng-template mat-tab-label>
+          <span class="badge">{{event.Attachments.length}}</span>
+          <mat-icon (touchstart)="setHeadingTouch()" (touchend)="unsetHeadingTouch()">folder</mat-icon>
+        </ng-template>
+        <div class="file-tab" (wheel)="stopPropagation($event)" (touchstart)="stopPropagation($event)" (touchmove)="stopPropagation($event)">
+
+          <mat-toolbar>
+            <mat-toolbar-row>
+              <span>Files</span>
+              <span class="toolbar-spacer"></span>
+
+              <button 
+                [class.hide]="selection.selected.length == 0" 
+                [disabled]="!(this.DataTransferService.onlineObs | async)"
+                mat-raised-button 
+                color="primary" 
+                class="file-tool-bar-btn-marg" 
+                (click)="openDownloadDialog()"
+              >
+                {{LangService.activeLanguage.eventItemDownloadBtn}}
+              </button>
+
+              <button 
+                [class.hide]="selection.selected.length > 0" 
+                [disabled]="!(this.DataTransferService.onlineObs | async)"
+                mat-raised-button 
+                color="primary" 
+                class="file-tool-bar-btn-marg" 
+                (click)="openUploadDialog()"
+              >
+                {{LangService.activeLanguage.eventItemUploadBtn}}
+              </button>
+
+              <button 
+                [class.hide]="this.selection.selected.length != 1" 
+                [disabled]="!(this.DataTransferService.onlineObs | async)"
+                mat-raised-button 
+                color="white" 
+                class="file-tool-bar-btn-marg" 
+                *ngIf='selection.selected.length == 1' 
+                (click)="openEditFileDialog('Edit '+selection.selected[0].Title+' Title', selection.selected[0].Title)"
+              >
+              {{LangService.activeLanguage.eventItemEditBtn}}
+              </button>
+
+              <button mat-raised-button color="warn" class="file-tool-bar-btn-marg" *ngIf='selection.selected.length > 0' (click)="openConfirmDialogFile(this.selection.selected)">
+                {{LangService.activeLanguage.eventItemDeleteBtn}}
+              </button>
+
+            </mat-toolbar-row>
+          </mat-toolbar>
+          <mat-table #table [dataSource]="dataSource">
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation();"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef> {{LangService.activeLanguage.eventItemFileName}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+            </ng-container>
+        
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+              <mat-header-cell *matHeaderCellDef> {{LangService.activeLanguage.eventItemFileType}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.Type}} </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" [@appearDisappear] (click)="openPreviewDialog(row)">
+            </mat-row>
+          </mat-table>
+          <p *ngIf="ELEMENT_DATA.length < 1">{{LangService.activeLanguage.eventItemNoFilesMsg}}</p>
+          
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 4" *ngIf="editTabVisible && (this.DataTransferService.onlineObs | async)">
+          <ng-template mat-tab-label>
+            <mat-icon (touchstart)="setHeadingTouch()" (touchend)="unsetHeadingTouch()">settings</mat-icon>
+          </ng-template>
+          <div class="settings-tab">
+
+              <mat-toolbar-row class="edit-tab-toolbar">
+                <button mat-fab color="primary" (click)="openEventDialog(null)" matTooltip="{{LangService.activeLanguage.eventItemAddChildMsg}}">
+                  <mat-icon aria-label="Button with a plus icon">add</mat-icon>
+                </button>
+                <button mat-fab color="primary" (click)="beginMove()" matTooltip={{LangService.activeLanguage.eventItemMoveTip}}>
+                  <mat-icon aria-label="Button with a upload icon">compare_arrows</mat-icon>
+                </button>
+                <button
+                  mat-fab color="accent" 
+                  (click)="openEventDialog(this.event)"
+                  matTooltip="{{LangService.activeLanguage.eventItemEditEventMsg}}"
+                >
+                  <mat-icon aria-label="Button with a gear icon">build</mat-icon>
+                </button>
+                <button mat-fab color="warn" (click)="openConfirmDialogEvent()" matTooltip="{{LangService.activeLanguage.eventItemDeleteEventMsg}}">
+                  <mat-icon aria-label="Button with a delete icon">delete</mat-icon>
+                </button>
+              </mat-toolbar-row>
+
+          </div>
+        </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

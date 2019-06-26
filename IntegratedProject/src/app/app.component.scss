@@ -1,0 +1,121 @@
+:host {
+  height: 100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+}
+
+app-identity-bar {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  border-bottom: 1px solid #ccc; 
+  padding: 10px 15px;
+  align-items: center;
+  z-index: 11;
+  position: relative;
+}
+
+app-left-pane {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 100%;
+  max-width: 25%;
+  width: 25%;
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 10;
+  padding: 0;
+}
+
+app-right-pane {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  max-width: 100%;
+}
+
+.center-item {
+	height: 100%;
+	flex-direction: row;
+	box-sizing: border-box;
+	display: flex;
+	max-height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.mat-tab-body-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-tab-group {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.pane-container {
+  height: 100%;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+}
+
+.close-tab-btn:hover {
+  color: #f44336;
+  transition: color 0.15s ease-in-out;
+}
+
+.tab-label  {
+  font-size: 1.1em;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-label span {
+  font-weight: bold;
+  margin-right: 20px;
+  margin-left: -15px;
+}
+
+.tab-label i {
+  margin-right: -15px;
+}
+
+@media (max-width: 1200px) { 
+  app-left-pane {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 850px) { 
+  .tab-label span {
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tab-label  {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 650px) {
+  .tab-label span {
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+	.tab-label  {
+    font-size: 0.8em;
+  }
+}

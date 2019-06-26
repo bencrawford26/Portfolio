@@ -1,0 +1,608 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class LangService {
+
+  activeLanguage = null;
+
+  english = {
+    selectTimeline:"Select a timeline",
+
+    identityBarTitle:"Timeline Event Tool",
+    identityLangSelect:"language select",
+    identityChangeTheme:"change theme",
+    identityToggleRegister:"toggle timeline register",
+    identityIndigoPink:"Indigo Pink",
+    identityPurpleGreen:"Purple Green",
+    identityPurpleAmber:"Purple Amber",
+    identityPinkGrey:"Pink Blue-Grey",
+    identityFullScreen:"Toggle full screen",
+
+    leftPaneAddBtn:"Add",
+    leftPaneEditBtn:"Edit",
+    leftPaneDeleteBtn:"Delete",
+    leftPaneTableTitle:"Title",
+    leftPaneTableDate:"Date",
+    leftPaneTableEvents:"Events",
+    leftPaneSearch:"Search",
+
+    rightPaneAdd:"add first event",
+    rightPaneSearch:"Search Events",
+    rightPaneTree:"Tree",
+    rightPaneDate:"Date",
+    rightPaneMap:"Map",
+
+    eventItemDownloadBtn:"Download",
+    eventItemUploadBtn:"Upload",
+    eventItemEditBtn:"Edit",
+    eventItemDeleteBtn:"Delete",
+    eventItemFileName:"Name",
+    eventItemFileType:"Type",
+    eventItemNoFilesMsg:"Click upload to upload files to this event",
+    eventItemAddChildMsg:"add child event",
+    eventItemEditEventMsg:"edit event",
+    eventItemDeleteEventMsg:"delete event",
+    eventItemUploadFileMsg:"upload attachments",
+
+    feedBackCreatingEvent: "Creating event",
+    feedBackEventCreated: "Event created",
+    feedBackTlLinkFail: "Failed to link event to timeline",
+    feedBackEventsLinkFail: "Failed to link event to event",
+    feedBackCreateEventFail: "Failed to create event",
+    feedBackFileNameChanged: "File title changed to ",
+    feedBackFileNameChangedErr: "There was an error editing the file title ",
+    feedBackDeletingFiles: "Deleting files",
+    feedBackFilesDeleted: "Files deleted",
+    feedBackDeletingEvents: "Deleting events",
+    feedBackEventsDeleted: "Event's deleted",
+    feedBackDeleteEventErr: "Unable to delete events",
+    feedBackDeleteFilesErr: "There was an error deleting files",
+    feedBackDeleteTimelineErr: "There was an error deleting timeline ",
+    feedBackDeletedTimeline: "Timelines deleted",
+    feedBackDeletingTimeline: "Deleting timeline",
+    feedBackAddTimelineErr: "There was an error adding timeline for ",
+    feedBackEditTimelineErr: "There was an error editing the timeline title",
+    feedBackEditedTimeline: "Timeline title changed to ",
+    feedBackEditingTimeline: "Editing timeline title to ",
+    feedBackAddingTimeline: "Adding timeline for ",
+    feedBackTimelineAdded: "Timeline added for ",
+    feedBackTimelinesLoaded: "Timelines loaded",
+    feedBackTimelinesGetFailed: "Unable to get timelines",
+    feedBackEditingEvent: "Editing event",
+    feedBackEditedEvent: "Event edited",
+    feedBackEditEventErr: "Unable to edit event",
+
+    confirmConfirm: "Confirm",
+    confirmCancel: "Cancel",
+    confirmDeleteEvent: "Are you sure you want to delete this event?",
+    confirmDeleteFiles: "Are you sure you want to delete the selected files?",
+    confirmDeleteTimeline: "Are you sure you want to delete the selected timelines?",
+    
+    textInEditingFile: "Editing file ",
+    textInAddTimeline: "Create Timeline",
+    textInEditTimeline: "Edit Timeline: ",
+
+    dialogDownTitle: "Downloading Attachments",
+    dialogDownCompIn: "Downloads completed in",
+    dialogDownSec: "seconds",
+    dialogDownAreSure: "Are you sure you want to close? Some files might still be downloading.",
+
+    dialogUpTitle: "Uploading Attachments for ",
+    dialogUpCompIn: "Uploads completed in",
+    dialogUpSec: "seconds",
+    dialogUpAreSure: "Are you sure you want to close? Some files might still be uploading.",
+
+    dialogUpDownYes: "Yes",
+    dialogUpDownNo: "No",
+    dialogUpDownClose: "Close",
+
+    eventDialogTitleNew:"Create Event",
+    eventDialogTitleEdit:"Edit Event",
+    eventDialogTitle:"Title",
+    eventDialogSeverity:"Severity",
+    eventDialogSeverityL:"Low",
+    eventDialogSeverityM:"Medium",
+    eventDialogSeverityH:"High",
+    eventDialogTags:"Tags",
+    eventDialogDescription:"Description",
+    eventDialogNext:"Next",
+    eventDialogBack:"Back",
+    eventDialogLocation:"Location",
+    eventDialogDate:"Date/Time",
+    eventDialogCreate:"Create",
+    eventDialogUpdate:"Update",
+    eventDialogLongitude:"Longitude",
+    eventDialogLatitude:"Latitude",
+
+    treePartMoving:"Moving event",
+    treePartMoved:"Event moved",
+    treePartMoveFail:"Failed to move event",
+    treePartMoveNot:"Event was not moved",
+
+    identityResetAppQ:"Are you sure you want reset the application?",
+    identityAppReset:"application reset",
+    eventMovePt1:"Click a highlighted event to add ",
+    eventMovePt2:" as a child",
+    eventItemMoveTip:"Move event",
+
+    textInOk:"Ok",
+    textInCancel:"Cancel",
+
+    eventDialogDescError:"events must have a description",
+    eventDialogDisableLoc:"Disable locattion",
+    eventLatReq:"latitude from -85 to 85",
+    eventLonReq:"longitude from -180 to 180",
+    eventLatErr:"Must be between -85 and 85",
+    eventLonErr:"Must be between -180 and 180",
+    eventDialogMustBeAfter:"must be after",
+    eventDialogMustBeBefore:"must be before",
+
+    confirmOnlyEvent:"Only this event",
+    confirmAllEvent:"Event and all children",
+
+    attachFail:"There was a problem retreiving a file",
+
+    rightPaneBeforeDate:"Before date",
+    rightPaneAfterDate:"After date",
+    rightPaneAddEvent:"Add Event",
+    rightPaneTagSearch:"Search Tags",
+
+  }
+
+  spanish = {
+    selectTimeline: "Seleccionar una línea de tiempo",
+    
+    identityBarTitle: "Herramienta de evento de línea de tiempo",
+    identityLangSelect: "selección de idioma",
+    identityChangeTheme: "cambiar el tema",
+    identityToggleRegister: "alternar registro de línea de tiempo",
+    identityIndigoPink: "Indigo Pink",
+    identityPurpleGreen: "Purple Green",
+    identityPurpleAmber: "Purple Amber",
+    identityPinkGrey: "Pink Blue-Gray",
+    identityFullScreen:"Alternar pantalla completa",
+
+    leftPaneAddBtn: "Agregar",
+    leftPaneEditBtn: "Editar",
+    leftPaneDeleteBtn: "Eliminar",
+    leftPaneTableTitle: "Título",
+    leftPaneTableDate: "Fecha",
+    leftPaneTableEvents: "Eventos",
+    leftPaneSearch: "Buscar",
+
+    rightPaneAdd: "agregar primer evento",
+    rightPaneSearch: "Eventos de búsqueda",
+    rightPaneTree: "Árbol",
+    rightPaneDate: "Fecha",
+    rightPaneMap: "Mapa",
+
+    eventItemDownloadBtn: "Descargar",
+    eventItemUploadBtn: "Subir",
+    eventItemEditBtn: "Editar",
+    eventItemDeleteBtn: "Eliminar",
+    eventItemFileName: "Nombre",
+    eventItemFileType: "Tipo",
+    eventItemNoFilesMsg: "Haz clic en cargar para subir archivos a este evento",
+    eventItemAddChildMsg: "agregar evento hijo",
+    eventItemEditEventMsg: "editar evento",
+    eventItemDeleteEventMsg: "eliminar evento",
+    eventItemUploadFileMsg: "cargar archivos adjuntos",
+
+    feedBackCreatingEvent: "Crear evento",
+    feedBackEventCreated: "Evento creado",
+    feedBackTlLinkFail: "No se pudo vincular el evento a la línea de tiempo",
+    feedBackEventsLinkFail: "Error al vincular evento a evento",
+    feedBackCreateEventFail: "No se pudo crear el evento",
+    feedBackFileNameChanged: "Título del archivo cambiado a",
+    feedBackFileNameChangedErr: "Hubo un error al editar el título del archivo",
+    feedBackDeletingFiles: "Borrando archivos",
+    feedBackFilesDeleted: "Archivos eliminados",
+    feedBackDeletingEvents: "Eliminando eventos",
+    feedBackEventsDeleted: "Evento eliminado",
+    feedBackDeleteEventErr: "No se pueden eliminar eventos",
+    feedBackDeleteFilesErr: "Hubo un error al eliminar archivos",
+    feedBackDeleteTimelineErr: "Hubo un error al eliminar la línea de tiempo",
+    feedBackDeletedTimeline: "Líneas de tiempo eliminadas",
+    feedBackDeletingTimeline: "Borrando línea de tiempo",
+    feedBackAddTimelineErr: "Hubo un error al agregar la línea de tiempo para",
+    feedBackEditTimelineErr: "Hubo un error al editar el título de la línea de tiempo",
+    feedBackEditedTimeline: "El título de la línea de tiempo cambió a",
+    feedBackEditingTimeline: "Editando el título de la línea de tiempo a",
+    feedBackAddingTimeline: "Agregar línea de tiempo para",
+    feedBackTimelineAdded: "Cronología agregada para",
+    feedBackTimelinesLoaded: "Cargas cronológicas cargadas",
+    feedBackTimelinesGetFailed: "No se pueden obtener líneas de tiempo",
+    feedBackEditingEvent: "Edición de evento",
+    feedBackEditedEvent: "Evento editado",
+    feedBackEditEventErr: "No se puede editar el evento",
+
+    confirmConfirm: "Confirmar",
+    confirmCancel: "Cancelar",
+    confirmDeleteEvent: "¿Seguro que quieres eliminar este evento?",
+    confirmDeleteFiles: "¿Estás seguro de que deseas eliminar los archivos seleccionados?",
+    confirmDeleteTimeline: "¿Seguro que quieres eliminar las líneas de tiempo seleccionadas?",
+
+    textInEditingFile: "Editar archivo",
+    textInAddTimeline: "Crear línea de tiempo",
+    textInEditTimeline: "Editar línea de tiempo:",
+
+    dialogDownTitle: "Descarga de archivos adjuntos",
+    dialogDownCompIn: "Descargas completadas en",
+    dialogDownSec: "segundos",
+    dialogDownAreSure: "¿Estás seguro de que deseas cerrar? Algunos archivos aún pueden estarse descargando",
+
+    dialogUpTitle: "Carga de archivos adjuntos para",
+    dialogUpCompIn: "Cargas completadas en",
+    dialogUpSec: "segundos",
+    dialogUpAreSure: "¿Estás seguro de que deseas cerrar? Algunos archivos aún se pueden cargar",
+
+    dialogUpDownYes: "Sí",
+    dialogUpDownNo: "No",
+    dialogUpDownClose: "Cerrar",
+
+    eventDialogTitleNew: "Crear evento",
+    eventDialogTitleEdit: "Editar evento",
+    eventDialogTitle: "Título",
+    eventDialogSeverity: "Gravedad",
+    eventDialogSeverityL: "Bajo",
+    eventDialogSeverityM: "Medio",
+    eventDialogSeverityH: "Alto",
+    eventDialogTags: "Etiquetas",
+    eventDialogDescription: "Descripción",
+    eventDialogNext: "Siguiente",
+    eventDialogBack: "Atrás",
+    eventDialogLocation: "Ubicación",
+    eventDialogDate: "Fecha / Hora",
+    eventDialogCreate: "Crear",
+    eventDialogUpdate: "Actualización",
+    eventDialogLongitude: "Longitud",
+    eventDialogLatitude: "Latitud",
+
+    treePartMoving: "Evento en movimiento",
+    treePartMoved: "Evento movido",
+    treePartMoveFail: "No se pudo mover el evento",
+    treePartMoveNot: "El evento no se movió",
+
+    identityResetAppQ: "¿Seguro que quieres restablecer la aplicación?",
+    identityAppReset: "reinicio de la aplicación",
+    eventMovePt1: "Haga clic en un evento resaltado para agregar",
+    eventMovePt2: "como un niño",
+    eventItemMoveTip: "Move event",
+
+    textInOk: "Ok",
+    textInCancel: "Cancelar",
+
+    eventDialogDescError: "los eventos deben tener una descripción",
+    eventDialogDisableLoc: "Deshabilitar ubicación",
+    eventLatReq: "latitud de -85 a 85",
+    eventLonReq: "longitud de -180 a 180",
+    eventLatErr: "Debe estar entre -85 y 85",
+    eventLonErr: "Debe estar entre -180 y 180",
+    eventDialogMustBeAfter: "debe estar después",
+    eventDialogMustBeBefore: "debe estar antes",
+
+    confirmOnlyEvent: "Only this event",
+    confirmAllEvent: "Evento y todos los niños",
+
+    attachFail: "Hubo un problema al recuperar un archivo",
+
+    rightPaneBeforeDate: "Antes de la fecha",
+    rightPaneAfterDate: "Después de la fecha",
+    rightPaneAddEvent: "Agregar evento",
+    rightPaneTagSearch: "Etiquetas de búsqueda",
+
+  }
+
+  german = {
+
+    selectTimeline: "Wählen Sie eine Zeitleiste",
+        
+    identityBarTitle: "Zeitachsen-Event-Tool",
+    identityLangSelect: "Sprachauswahl",
+    identityChangeTheme: "Betreff ändern",
+    identityToggleRegister: "toggle timeline record",
+    identityIndigoPink: "Indigo Pink",
+    identityPurpleGreen: "Lila Grün",
+    identityPurpleAmber: "Lila Bernstein",
+    identityPinkGrey: "Pink Blau-Grau",
+    identityFullScreen: "Alternativer Vollbildschirm",
+
+    leftPaneAddBtn: "Hinzufügen",
+    leftPaneEditBtn: "Bearbeiten",
+    leftPaneDeleteBtn: "Löschen",
+    leftPaneTableTitle: "Titel",
+    leftPaneTableDate: "Datum",
+    leftPaneTableEvents: "Ereignisse",
+    leftPaneSearch: "Suchen",
+
+    rightPaneAdd: "erstes Ereignis hinzufügen",
+    rightPaneSearch: "Ereignisse suchen",
+    rightPaneTree: "Baum",
+    rightPaneDate: "Datum",
+    rightPaneMap: "Karte",
+
+    eventItemDownloadBtn: "Herunterladen",
+    eventItemUploadBtn: "Hochladen",
+    eventItemEditBtn: "Bearbeiten",
+    eventItemDeleteBtn: "Löschen",
+    eventItemFileName: "Name",
+    eventItemFileType: "Typ",
+    eventItemNoFilesMsg: "Klicken Sie auf Hochladen, um Dateien zu diesem Ereignis hochzuladen",
+    eventItemAddChildMsg: "untergeordnetes Ereignis hinzufügen",
+    eventItemEditEventMsg: "Ereignis bearbeiten",
+    eventItemDeleteEventMsg: "Ereignis löschen",
+    eventItemUploadFileMsg: "Anhänge hochladen",
+
+    
+    feedBackCreatingEvent: "Ereignis erstellen",
+    feedBackEventCreated: "Ereignis erstellt",
+    feedBackTlLinkFail: "Das Ereignis konnte nicht mit der Zeitleiste verknüpft werden",
+    feedBackEventsLinkFail: "Ereignis konnte nicht mit Ereignis verknüpft werden",
+    feedBackCreateEventFail: "Das Ereignis konnte nicht erstellt werden",
+    feedBackFileNameChanged: "Titel der Datei geändert in",
+    feedBackFileNameChangedErr: "Beim Bearbeiten des Dateititels ist ein Fehler aufgetreten",
+    feedBackDeletingFiles: "Dateien löschen",
+    feedBackFilesDeleted: "Gelöschte Dateien",
+    feedBackDeletingEvents: "Ereignisse löschen",
+    feedBackEventsDeleted: "Ereignis gelöscht",
+    feedBackDeleteEventErr: "Ereignisse konnten nicht gelöscht werden",
+    feedBackDeleteFilesErr: "Beim Löschen der Dateien ist ein Fehler aufgetreten",
+    feedBackDeleteTimelineErr: "Beim Löschen der Zeitleiste ist ein Fehler aufgetreten",
+    feedBackDeletedTimeline: "Deleted Timelines",
+    feedBackDeletingTimeline: "Zeitleiste löschen",
+    feedBackAddTimelineErr: "Beim Hinzufügen der Zeitachse ist ein Fehler aufgetreten",
+    feedBackEditTimelineErr: "Beim Bearbeiten des Titels der Zeitleiste ist ein Fehler aufgetreten",
+    feedBackEditedTimeline: "Der Titel der Timeline wurde geändert in",
+    feedBackEditingTimeline: "Bearbeiten des Titels der Zeitleiste auf",
+    feedBackAddingTimeline: "Zeitachse hinzufügen für",
+    feedBackTimelineAdded: "Timeline hinzugefügt für",
+    feedBackTimelinesLoaded: "Geladene chronologische Lasten",
+    feedBackTimelinesGetFailed: "Zeitleisten können nicht abgerufen werden",
+    feedBackEditingEvent: "Ereignisbearbeitung",
+    feedBackEditedEvent: "Ereignis bearbeitet",
+    feedBackEditEventErr: "Das Ereignis kann nicht bearbeitet werden",
+
+    confirmConfirm: "Bestätigen",
+    confirmCancel: "Abbrechen",
+    confirmDeleteEvent: "Möchten Sie dieses Ereignis wirklich löschen?",
+    confirmDeleteFiles: "Möchten Sie die ausgewählten Dateien wirklich löschen?",
+    confirmDeleteTimeline: "Sind Sie sicher, dass Sie die ausgewählten Zeitleisten löschen möchten?",
+
+    textInEditingFile: "Datei bearbeiten",
+    textInAddTimeline: "Zeitleiste erstellen",
+    textInEditTimeline: "Timeline bearbeiten:",
+
+    dialogDownTitle: "Anhänge herunterladen",
+    dialogDownCompIn: "Downloads abgeschlossen in",
+    dialogDownSec: "Sekunden",
+    dialogDownAreSure: "Sind Sie sicher, dass Sie schließen möchten? Einige Dateien werden möglicherweise noch heruntergeladen",
+
+    dialogUpTitle: "Anhänge hochladen für",
+    dialogUpCompIn: "Lasten abgeschlossen in",
+    dialogUpSec: "Sekunden",
+    dialogUpAreSure: "Sind Sie sicher, dass Sie schließen möchten? Einige Dateien können noch hochgeladen werden",
+
+    dialogUpDownYes: "Ja",
+    dialogUpDownNo: "Nein",
+    dialogUpDownClose: "Schließen",
+
+    eventDialogTitleNew: "Ereignis erstellen",
+    eventDialogTitleEdit: "Ereignis bearbeiten",
+    eventDialogTitle: "Titel",
+    eventDialogSeverity: "Schwerkraft",
+    eventDialogSeverityL: "Niedrig",
+    eventDialogSeverityM: "Mittel",
+    eventDialogSeverityH: "Hoch",
+    eventDialogTags: "Tags",
+    eventDialogDescription: "Beschreibung",
+    eventDialogNext: "Weiter",
+    eventDialogBack: "Zurück",
+    eventDialogLocation: "Ort",
+    eventDialogDate: "Datum / Uhrzeit",
+    eventDialogCreate: "Erstellen",
+    eventDialogUpdate: "Aktualisieren",
+    eventDialogLongitude: "Länge",
+    eventDialogLatitude: "Breite",
+
+    treePartMoving: "Ereignis in Bewegung",
+    treePartMoved: "Event verschoben",
+    treePartMoveFail: "Das Ereignis konnte nicht verschoben werden",
+    treePartMoveNot: "Das Ereignis wurde nicht verschoben",
+
+    identityResetAppQ: "Sind Sie sicher, dass Sie die Anwendung zurücksetzen möchten?",
+    identityAppReset: "Neustart der Anwendung",
+    eventMovePt1: "Klicken Sie auf ein hervorgehobenes Ereignis zum Hinzufügen",
+    eventMovePt2: "als Kind",
+    eventItemMoveTip: "Ereignis verschieben",
+
+    textInOk: "Ok",
+    textInCancel: "Abbrechen",
+
+    eventDialogDescError: "Ereignisse müssen eine Beschreibung haben",
+    eventDialogDisableLoc: "Ort deaktivieren",
+    eventLatReq: "Breite von -85 bis 85",
+    eventLonReq: "Länge von -180 bis 180",
+    eventLatErr: "Muss zwischen -85 und 85 liegen",
+    eventLonErr: "Es sollte zwischen -180 und 180 sein",
+    eventDialogMustBeAfter: "muss nachher sein",
+    eventDialogMustBeBefore: "muss vorher sein",
+
+    confirmOnlyEvent: "Nur dieses Ereignis",
+    confirmAllEvent: "Ereignis und alle Kinder",
+
+    attachFail: "Beim Wiederherstellen einer Datei ist ein Problem aufgetreten",
+
+    rightPaneBeforeDate: "Vor dem Datum",
+    rightPaneAfterDate: "Nach Datum",
+    rightPaneAddEvent: "Ereignis hinzufügen",
+    rightPaneTagSearch: "Tags durchsuchen",
+
+  }
+
+  french = {
+
+    selectTimeline: "Sélectionnez une chronologie",
+    
+    identityBarTitle: "Outil d'événement de scénario",
+    identityLangSelect: "sélection de la langue",
+    identityChangeTheme: "changer de sujet",
+    identityToggleRegister: "bascule l'enregistrement de chronologie",
+    identityIndigoPink: "Indigo Pink",
+    identityPurpleGreen: "Purple Green",
+    identityPurpleAmber: "Purple Amber",
+    identityPinkGrey: "Rose Bleu-Gris",
+    identityFullScreen: "Alterner en plein écran",
+
+    leftPaneAddBtn: "Ajouter",
+    leftPaneEditBtn: "Modifier",
+    leftPaneDeleteBtn: "Supprimer",
+    leftPaneTableTitle: "Titre",
+    leftPaneTableDate: "Date",
+    leftPaneTableEvents: "Evénements",
+    leftPaneSearch: "Recherche",
+
+    rightPaneAdd: "ajouter le premier événement",
+    rightPaneSearch: "Rechercher des événements",
+    rightPaneTree: "Arbre",
+    rightPaneDate: "Date",
+    rightPaneMap: "Carte",
+
+    eventItemDownloadBtn: "Télécharger",
+    eventItemUploadBtn: "Upload",
+    eventItemEditBtn: "Modifier",
+    eventItemDeleteBtn: "Supprimer",
+    eventItemFileName: "Nom",
+    eventItemFileType: "Type",
+    eventItemNoFilesMsg: "Cliquez sur télécharger pour télécharger des fichiers sur cet événement",
+    eventItemAddChildMsg: "Ajouter un événement enfant",
+    eventItemEditEventMsg: "éditer l'événement",
+    eventItemDeleteEventMsg: "delete event",
+    eventItemUploadFileMsg: "télécharger les pièces jointes",
+
+    feedBackCreatingEvent: "Créer un événement",
+    feedBackEventCreated: "Evénement créé",
+    feedBackTlLinkFail: "L'événement n'a pas pu être lié à la timeline",
+    feedBackEventsLinkFail: "Impossible de lier l'événement à l'événement",
+    feedBackCreateEventFail: "L'événement n'a pas pu être créé",
+    feedBackFileNameChanged: "Le titre du fichier a été modifié en",
+    feedBackFileNameChangedErr: "Une erreur s'est produite lors de la modification du titre du fichier",
+    feedBackDeletingFiles: "Suppression de fichiers",
+    feedBackFilesDeleted: "Fichiers supprimés",
+    feedBackDeletingEvents: "Suppression d'événements",
+    feedBackEventsDeleted: "Événement supprimé",
+    feedBackDeleteEventErr: "Impossible de supprimer les événements",
+    feedBackDeleteFilesErr: "Une erreur s'est produite lors de la suppression des fichiers",
+    feedBackDeleteTimelineErr: "Une erreur s'est produite lors de la suppression de la chronologie",
+    feedBackDeletedTimeline: "Chronologies supprimées",
+    feedBackDeletingTimeline: "Suppression de la chronologie",
+    feedBackAddTimelineErr: "Une erreur s'est produite lors de l'ajout de la timeline",
+    feedBackEditTimelineErr: "Une erreur s'est produite lors de la modification du titre de la timeline",
+    feedBackEditedTimeline: "Le titre de la timeline a été remplacé par",
+    feedBackEditingTimeline: "Modification du titre de la timeline",
+    feedBackAddingTimeline: "Ajouter un calendrier",
+    feedBackTimelineAdded: "Timeline added for",
+    feedBackTimelinesLoaded: "Charges chronologiques chargées",
+    feedBackTimelinesGetFailed: "Impossible d'obtenir les lignes de temps",
+    feedBackEditingEvent: "Modification d'événement",
+    feedBackEditedEvent: "Evénement modifié",
+    feedBackEditEventErr: "L'événement ne peut pas être modifié",
+
+    confirmationConfirmer: "Confirmer",
+    confirmAnnuler: "Annuler",
+    confirmDeleteEvent: "Êtes-vous sûr de vouloir supprimer cet événement?",
+    confirmDeleteFiles: "Êtes-vous certain de vouloir supprimer les fichiers sélectionnés?",
+    confirmDeleteTimeline: "Êtes-vous sûr de vouloir supprimer les montages sélectionnés?",
+
+    textInEditingFile: "Modifier le fichier",
+    textInAddTimeline: "Créer une chronologie",
+    textInEditTimeline: "Modifier le scénario:",
+
+    dialogDownTitle: "Télécharger les pièces jointes",
+    dialogDownCompIn: "Téléchargements terminés en",
+    dialogDownSec: "secondes",
+    dialogDownAreSure: "Êtes-vous certain de vouloir fermer certains fichiers?",
+
+    dialogUpTitle: "Télécharger les pièces jointes pour",
+    dialogUpCompIn: "Charges terminées dans",
+    dialogUpSec: "secondes",
+    dialogUpAreSure: "Êtes-vous sûr de vouloir fermer certains fichiers?",
+
+    dialogUpDownYes: "Oui",
+    dialogUpDownNo: "Non",
+    dialogUpDownClose: "Fermer",
+
+    eventDialogTitleNew: "Créer un événement",
+    eventDialogTitleEdit: "Modifier l'événement",
+    eventDialogTitle: "Titre",
+    eventDialogSeverity: "Gravité",
+    eventDialogSeverityL: "Low",
+    eventDialogSeverityM: "Moyen",
+    eventDialogSeverityH: "Élevé",
+    eventDialogTags: "Tags",
+    eventDialogDescription: "Description",
+    eventDialogNext: "Suivant",
+    eventDialogBack: "Retour",
+    eventDialogLocation: "Emplacement",
+    eventDialogDate: "Date / Heure",
+    eventDialogCreate: "Créer",
+    eventDialogUpdate: "Mettre à jour",
+    eventDialogLongitude: "Longueur",
+    eventDialogLatitude: "Latitude",
+
+    treePartMoving: "Événement en mouvement",
+    treePartMoved: "Evénement déplacé",
+    treePartMoveFail: "L'événement n'a pas pu être déplacé",
+    treePartMoveNot: "L'événement n'a pas bougé",
+
+    identityResetAppQ: "Êtes-vous sûr de vouloir réinitialiser l'application?",
+    identityAppReset: "redémarrage de l'application",
+    eventMovePt1: "Cliquez sur un événement en surbrillance pour l'ajouter",
+    eventMovePt2: "en tant qu'enfant",
+    eventItemMoveTip: "Déplacer l'événement",
+
+    textInOk: "Ok",
+    textInCancel: "Annuler",
+
+    eventDialogDescError: "les événements doivent avoir une description",
+    eventDialogDisableLoc: "Désactiver l'emplacement",
+    eventLatReq: "latitude de -85 à 85",
+    eventLonReq: "longueur de -180 à 180",
+    eventLatErr: "Doit être compris entre -85 et 85",
+    eventLonErr: "Il devrait être entre -180 et 180",
+    eventDialogMustBeAfter: "doit être après",
+    eventDialogMustBeBefore: "doit être avant",
+
+    confirmOnlyEvent: "Seulement cet événement",
+    confirmAllEvent: "Evénement et tous les enfants",
+
+    attachFail: "Un problème est survenu lors de la récupération d'un fichier",
+
+    rightPaneBeforeDate: "Avant la date",
+    rightPaneAfterDate: "Après la date",
+    rightPaneAddEvent: "Ajouter un événement",
+    rightPaneTagSearch: "Rechercher des balises",
+
+  }
+
+  constructor() { 
+    this.activeLanguage = this.english;
+  }
+
+  setLanguage(newLanguage){
+    switch(newLanguage) {
+      case 'En':
+        this.activeLanguage = this.english
+        break;
+      case 'Es':
+        this.activeLanguage = this.spanish
+        break;
+      case 'De':
+        this.activeLanguage = this.german
+        break;
+      case 'Fr':
+        this.activeLanguage = this.french
+        break;
+    }
+  }
+
+}

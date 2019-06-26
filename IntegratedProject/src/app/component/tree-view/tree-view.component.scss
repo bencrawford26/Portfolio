@@ -1,0 +1,31 @@
+.tree {
+	width:500000px;
+	z-index: 0;
+}
+
+.tree ul {
+	padding: 20px 0 0 0; 
+	position: relative;
+	height: 100px;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.tree li {
+	float: left; text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 20px 5px 0 5px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.panzoom-onscreen-ctrl-group {
+	position: fixed;
+	bottom: 14px;
+	right: 14px;
+	z-index: 4;
+}

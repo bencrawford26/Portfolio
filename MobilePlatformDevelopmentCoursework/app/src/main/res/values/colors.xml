@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Ben Crawford - S1712082-->
+
+<resources>
+    <color name="colorPrimary">#009ACD</color>
+    <color name="colorPrimaryDark">#00688B</color>
+    <color name="colorAccent">#00688B</color>
+    <color name="buttonBG">#FFFAFA</color>
+    <color name="buttonBorder">#AAAAAA</color>
+</resources>

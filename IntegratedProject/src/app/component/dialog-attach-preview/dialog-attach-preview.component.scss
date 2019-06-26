@@ -1,0 +1,48 @@
+* {
+    overflow: hidden;
+}
+
+iframe {
+    width: 100%;
+    min-height: 480px;
+}
+
+img{
+    max-height: 480px;
+    min-height: 100%;
+    max-width: 100%;
+}
+
+.mat-tab-body-content { 
+    min-height: 300px;
+}
+
+
+mat-card {
+    min-height: 400px;
+    padding: 0;
+}
+
+.mat-dialog-content {
+    padding: 0;
+}
+
+.mat-card {
+    box-shadow: 0;
+}
+
+.mat-card-title {
+    margin: 0;
+}
+
+.mat-card-content, mat-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+h2 {
+    margin: 18px 0;
+}

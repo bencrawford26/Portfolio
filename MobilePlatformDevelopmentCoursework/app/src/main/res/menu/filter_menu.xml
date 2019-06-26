@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Ben Crawford - S1712082-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/search_area"
+        android:title="Search Areas" />
+    <item
+        android:id="@+id/search_date"
+        android:title="Search Dates" />
+    <item
+        android:id="@+id/date_range"
+        android:title="Date Range" />
+</menu>

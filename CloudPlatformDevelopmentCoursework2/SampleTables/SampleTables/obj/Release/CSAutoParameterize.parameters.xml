@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="AzureStorage-Web.config Connection String" description="AzureStorage Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=mp3storages1712082;AccountKey=fRkfPRSvE7j1byNAB1AqrlZ8C/jjsCyVl3Gn/0Zl2QGtwKKHFv2ud750p9wu80rbDIDhPK2OwIjPwCZ3VxyxBw==;EndpointSuffix=core.windows.net" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\crawf\\onedrive\\documents\\visual\ studio\ 2015\\Projects\\SampleTables\\SampleTables\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureStorage']/@connectionString" />
+  </parameter>
+  <parameter name="AzureWebJobsDashboard-Web.config Connection String" description="AzureWebJobsDashboard Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=mp3storages1712082;AccountKey=fRkfPRSvE7j1byNAB1AqrlZ8C/jjsCyVl3Gn/0Zl2QGtwKKHFv2ud750p9wu80rbDIDhPK2OwIjPwCZ3VxyxBw==;EndpointSuffix=core.windows.net" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\crawf\\onedrive\\documents\\visual\ studio\ 2015\\Projects\\SampleTables\\SampleTables\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureWebJobsDashboard']/@connectionString" />
+  </parameter>
+  <parameter name="AzureWebJobsStorage-Web.config Connection String" description="AzureWebJobsStorage Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=mp3storages1712082;AccountKey=fRkfPRSvE7j1byNAB1AqrlZ8C/jjsCyVl3Gn/0Zl2QGtwKKHFv2ud750p9wu80rbDIDhPK2OwIjPwCZ3VxyxBw==;EndpointSuffix=core.windows.net" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\crawf\\onedrive\\documents\\visual\ studio\ 2015\\Projects\\SampleTables\\SampleTables\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureWebJobsStorage']/@connectionString" />
+  </parameter>
+</parameters>

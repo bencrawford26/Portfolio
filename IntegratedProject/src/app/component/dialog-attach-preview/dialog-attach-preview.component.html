@@ -1,0 +1,26 @@
+<mat-dialog-content>
+  <mat-tab-group class="demo-tab-group" [selectedIndex]='startIndex'>
+    <mat-tab label="Tab 1" *ngFor="let attachment of data.fileList; let i = index">
+      <ng-template mat-tab-label>
+        <mat-icon *ngIf="attachment.Type == 'jpeg' || attachment.Type == 'jpg' || attachment.Type == 'png'">image</mat-icon>
+        <mat-icon *ngIf="attachment.Type == 'doc'">note</mat-icon>
+      </ng-template>
+      <mat-card>
+        <div class="loading-display loading-display-clear" *ngIf="attachment.progress != 100 && attachment.Type != 'doc'">
+          <mat-progress-spinner [value]="attachment.progress"></mat-progress-spinner>
+          <p>{{attachment.progress}}%</p>
+        </div>
+        <ng-container>
+          <mat-card-header>
+            <mat-card-title><h2>{{attachment.Title}}</h2></mat-card-title>
+          </mat-card-header>
+          <mat-card-content *ngIf="attachment.url">
+            <iframe *ngIf="attachment.Type == 'doc'" [src]='attachment.url'></iframe>
+            <img *ngIf="attachment.Type == 'jpg' || attachment.Type == 'png' || attachment.Type == 'jpeg'" [src]='attachment.url'>
+          </mat-card-content>
+        </ng-container>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+

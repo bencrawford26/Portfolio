@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript and The Genetic Algorithm</title>
+
+<!--Bootstrap & CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+</head>
+
+<body>
+<nav class="navbar-fixed-top">
+  <div class="container-fluid-nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <!-- button for collapsed nav -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNav1" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JS & GA</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="topFixedNav1">
+            <ul class="nav navbar-nav">
+        <!-- main links for site -->
+        <li class="navbar-link"><a href="index.html">Home</a></li>
+        <li class="navbar-link"><a href="smartRockets.html">Smart Rockets</a></li>
+        <li class="navbar-link"><a href="asteroids.html">Asteroids</a></li>
+        <li class="active"><a href="extras.html">Extras</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+      	<!-- right nav link for contact -->
+        <li class="right-navbar-link"><a href="contact.html">Contact</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- main content -->
+<div class="container-fluid-frame">
+	<div class="container-fluid-main">
+    	<!-- heading for page -->
+    	<h1 class="h1-Apps">Miscellaneous</h1>
+        <!-- row used to hold introductory text -->
+    	<p class="extras-intro text-center">In this section I've placed all of the apps which have little or nothing to do with the overall project but I still found worth mentioning.</p>
+        
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!--column used to hold extra navigation -->
+        	<div class="col-md-3">
+        	<ul class="extra-nav">
+        		<li class="extra-link"><a href="extras.html">Extras - Home</a></li>
+        		<li class="extra-link"><a href="movers.html">Walkers and Movers</a></li>
+        		<li class="extra-link"><a href="forces.html">Forces</a></li>
+        		<li class="extra-link"><a href="rotation.html">Rotation</a></li>
+        		<li class="extra-link"><a href="noise.html">Perlin Noise</a></li>
+        		<li class="extra-active"><a href="misc.html">Misc.</a></li>
+        	</ul>
+        	</div>
+            
+            <!-- column used to hold gradients app -->
+            <div class="col-md-6">
+            	<div class="walker-holder">
+                	<iframe class="sketch400px" src="js/extras/misc/gradients/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!--column holds text describing gradients app -->
+            <div class="col-md-3">
+            	<p class="extras-full text-center">This first app is essentially a gradient generator. In order to generate these gradients, the entire pixel array must be sorted through and coloured accordingly, making this app very heavy  on processing. For safety's sake, and so the site doesn't crash, I've set it to only load when the mouse is clicked on the canvas. Have a loof at whate different gradients can be created based on the mouse position.</p>
+            </div>
+        </div>
+        	<!-- hr for seperating rows -->
+            <hr class="main-hr">
+            
+            <!-- row used to hold bubbleGenerator app -->
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+            	
+                <div class="walker-holder">
+                    <iframe class="sketch400px" src="js/extras/misc/bubbleGenerator/index.html"></iframe>
+                </div>                
+                
+            </div>
+            
+            <!-- row used to hold text explaining bubbleGenerator app -->
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+            	<p class="extras-full text-center">This app is basically a bubble generator! The idea behind it was to simulate bubbles rising and popping in a glass of fizzy juice! To do this I used the movers from previous examples and gave them erratic movement from left to right with a consistently increasing height. You can add bubbles to the canvas by clicking on it, press any key to remove the last bubble!</p>
+            </div>
+            <!-- hr for seperating rows -->
+            <hr class="main-hr">
+            
+            <!-- row used to hold blackWhiteFrog app -->
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+                <div class="walker-holder">
+                	<iframe class="sketch400px" src="js/extras/misc/blackWhiteFrog/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!-- row used to hold text explaining blackWhiteFrog app -->
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+            	<p class="extras-full text-center">This app converts an image to grayscale and then sets the brightness of each pixel relevant to it's distance from the mouse position. the brightest pixels are on the mouses position, the brightness is then reduced towards the centre of the ring which appears around the mouse. Finally, the brightness increases again as the ring widens, leaving all of the pixels outwith the radius pure white. This app is also very heavy on processing so you'll have to click the canvas to use it, too.</p>
+            </div>
+            <!-- hr used to seperate rows -->
+            <hr class="main-hr">
+            
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+            	<!-- column used to hold smashed screen app -->
+            	<div class="col-md-6">
+                	<div class="walker-holder">
+                    	<iframe class="sketch400px" src="js/extras/misc/smashedScreen/index.html"></iframe>
+                    </div>
+                </div>
+                
+                <!-- column used to hold mouse ink burn app -->
+                <div class="col-md-6">
+                	<div class="walker-holder">
+                    	<iframe class="sketch400px" src="js/extras/misc/mouseInkBurn/index.html"></iframe>
+                    </div>
+                </div>
+            </div>
+            <!-- row used to hold text explaining smashed screen and mouse ink burn apps -->
+            <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+            	<p class="extras-full text-center">Last of all are two very simple apps. The first is essentially a simulation of a smashed monitor. I thought it'd be a good joke to run it fullscreen and convince a friend you've smashed their monitor by accident! The second app uses the same mouse radius effect as the example above but without an image in the background. I just thought it was a nice effect more than anything else so I threw it in here! Both of these apps are also heavy to run in a browser, so I had to make them only run when clicked too.</p>
+            </div>
+    </div><!--container-fluid-main-->
+</div><!--container-fluid-frame-->
+
+<!--footer-->
+<!--intended to hold links but ran out of development time -->
+<div class="container-fluid-bottom-links">
+	
+</div>
+<!-- div to hold copyright statement -->
+<div class="footer">
+	<p class="copyright-state">&copy; Ben Crawford 2017</p>
+</div>
+
+</body>
+</html>

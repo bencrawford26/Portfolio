@@ -1,0 +1,74 @@
+<div style="height:100%;width:100%;"
+(mousedown)="mouseDown($event)" 
+(mouseleave)="mouseChange(false)" 
+(mouseup)="mouseChange(false)" 
+(mousemove)="mouseMove($event)"
+(wheel)="wheelMove($event)"
+(touchstart)="touchStart($event)"
+(touchmove)="touchMove($event)" 
+>
+  <div id={{timelineId}}-pan-zoom>
+    <div class="tree" id="tree" #tree style="width:500000px;">
+      <ul>
+        <li id={{timelineId}}-widthGetEle *ngIf="rootEvents.length > 0">
+          <ul>
+            <li *ngFor="let rootEvent of rootEvents">
+              <app-tree-part [timelineId]="timelineId" [componentEvent]="rootEvent"></app-tree-part>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<table class="panzoom-onscreen-ctrl-group hide-mobile" (touchstart)="stopPropagation($event)" *ngIf="DataTransferService.activeTimelines[timelineId].TimelineEvents.length > 0">
+  <tr>
+    <td></td> 
+    <td></td> 
+    <td>
+      <button mat-mini-fab (click)="setTransform(transformScale, transformX, (transformY+100))" color="white" matTooltip="move up" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>  
+    <td></td> 
+  </tr>
+  <tr>
+    <td>
+      <button mat-mini-fab (click)="setTransform((transformScale*1.1), transformX, transformY)" color="white" matTooltip="zoom in" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+      </button>
+    </td> 
+    <td>
+      <button mat-mini-fab (click)="setTransform(transformScale, (transformX+100), transformY)" color="white" matTooltip="move left" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_left</mat-icon>
+      </button>
+    </td> 
+    <td>
+      <button mat-mini-fab (click)="setTransform(0.6,'center', 100)" color="white" matTooltip="center" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">center_focus_strong</mat-icon>
+      </button>
+    </td>  
+    <td>
+      <button mat-mini-fab (click)="setTransform(transformScale, (transformX-100), transformY)" color="white" matTooltip="move right" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_right</mat-icon>
+      </button>
+    </td> 
+  </tr>
+  <tr>
+    <td>
+      <button mat-mini-fab (click)="setTransform((transformScale*0.9), transformX, transformY)" color="white" matTooltip="zoom out" class="timeline-ctrl-btn-centre">
+        <b>-</b>
+      </button>
+    </td> 
+    <td></td> 
+    <td>
+      <button mat-mini-fab (click)="setTransform(transformScale, transformX, (transformY-100))" color="white" matTooltip="move down" class="timeline-ctrl-btn-centre">
+        <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_down</mat-icon>
+      </button>
+    </td>  
+    <td></td> 
+  </tr>
+</table>
+
+

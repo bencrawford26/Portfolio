@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" id="html-tag">
+  <head>
+    <meta charset="utf-8">
+    <title>Event Timeline Tool | Aileron Airways</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/assets/css/indigo-pink.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/image/logo.png">
+  </head>
+  <body class="mat-app-background">
+    <app-root>
+      <style id="styles">
+        * {
+          font-family: Arial, Helvetica, sans-serif
+        }
+        html, body{
+          height:100%;
+          margin: 0;
+        }
+        app-root{
+          align-content: center;
+          justify-content: center;
+          display:flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        #outer-container {
+          display: flex;
+          height: 100%;
+          width: 100%;
+        }
+        #inner-container{
+          align-self: center;
+          margin: auto;
+        }
+        h1{
+          font-weight: normal;
+          margin: auto;
+          text-align: center;
+        }
+        h3 {
+          font-weight: normal;
+          margin: 0px;
+          text-align: center;
+        }
+        #spinner {
+          display: block;
+          text-align: center;
+          border: 10px solid #ccc;
+          border-radius: 50%;
+          border-top: 10px solid #3f51b5;
+          width: 90px;
+          height: 90px;
+          -webkit-animation: spin 2s linear infinite; 
+          animation: spin 2s linear infinite;
+          margin: auto;
+          margin-bottom: 15px;
+        }
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+      <div id="outer-container">
+        <div id="inner-container">
+          <span id="spinner"></span>
+          <h1>Aileron Airways</h1>
+          <h3>Timeline Event Tool</h3>
+        </div>
+      </div>
+    </app-root>
+    <script>
+
+      let spinner = document.getElementById('spinner');
+      let container = document.getElementById('outer-container');
+
+      if(localStorage){
+        let theme = localStorage.getItem('theme');
+        if(theme == 'purple-green') {
+          purpleGreen()
+        } else if(theme == 'deeppurple-amber') {
+          deeppurpleAmber()
+        } else if(theme == 'pink-bluegrey') {
+          pinkBluegrey()
+        }
+      }
+
+      function purpleGreen(){
+        spinner.style.borderTopColor = '#7B1FA2';
+        container.style.backgroundColor = '#303030'
+        container.style.color = '#fff'
+      }
+
+      function deeppurpleAmber(){
+        spinner.style.borderTopColor = '#673AB7';
+      }
+
+      function pinkBluegrey(){
+        spinner.style.borderTopColor = '#C2185B';
+        container.style.backgroundColor = '#303030'
+        container.style.color = '#fff'
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript and The Genetic Algorithm</title>
+
+<!--Bootstrap & CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+</head>
+
+<body>
+<nav class="navbar-fixed-top">
+  <div class="container-fluid-nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <!-- button for collapsed nav -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNav1" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JS & GA</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="topFixedNav1">
+            <ul class="nav navbar-nav">
+        <!-- main links for site -->
+        <li class="navbar-link"><a href="index.html">Home</a></li>
+        <li class="navbar-link"><a href="smartRockets.html">Smart Rockets</a></li>
+        <li class="navbar-link"><a href="asteroids.html">Asteroids</a></li>
+        <li class="active"><a href="extras.html">Extras</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+      	<!-- right nav link for contact -->
+        <li class="right-navbar-link"><a href="contact.html">Contact</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- main content -->
+<div class="container-fluid-frame">
+	<div class="container-fluid-main">
+    
+    	<!-- heading for page -->
+    	<h1 class="h1-Apps">Rotation</h1>
+        
+        <!-- row used to hold introductory text -->
+    	<p class="extras-intro text-center">This page covers the most notable apps I created when I was working through rotation exercises. While I understand that the concept of rotation isn't particularly interesting - I do however, still feel as if it's a topic worth mentioning due to it's complexity! Rotation on it's own is fairly simple with p5, but when you're trying to realistically simulate the rotation of an objeact that's moving, things become more complicated. </p>
+        
+        <!--hr used to seperate rows -->
+        <hr class="main-hr">
+        
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<!--column used to hold extra navigation -->
+        	<div class="col-md-3">
+        	<ul class="extra-nav">
+        		<li class="extra-link"><a href="extras.html">Extras - Home</a></li>
+        		<li class="extra-link"><a href="movers.html">Walkers and Movers</a></li>
+        		<li class="extra-link"><a href="forces.html">Forces</a></li>
+        		<li class="extra-active"><a href="rotation.html">Rotation</a></li>
+        		<li class="extra-link"><a href="noise.html">Perlin Noise</a></li>
+        		<li class="extra-link"><a href="misc.html">Misc.</a></li>
+        	</ul>
+        	</div>
+            
+            <!-- column used to hold baton app -->
+            <div class="col-md-5">
+            	<div class="walker-holder">
+                	<iframe class="walker" src="js/extras/rotation/baton/index.html"></iframe>
+                </div>
+            </div>
+            
+            <!-- column used to hold text explaining baton app -->
+            <div class="col-md-4">
+        		<p class="extras-full text-center">Here is one of the most basic examples of rotation, a simple baton-like object spinning in a circular path. This application was created using only p5.js' in-built rotate function. Angular velocity and acceleration play no part in this example.</p>
+            </div>
+        </div>
+        
+        <!-- hr used for seperating rows -->
+        <hr class="main-hr">
+        
+        <!-- row used to hold vehicle app -->
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<div class="walker-holder">
+                	<iframe class="cannonSim" src="js/extras/rotation/vehicle/index.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- row used to hold text explaining vehicle app -->
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<p class="extras-full text-center">Here we have an example of a car moving around an empty space. I know it's quite dull but it's a good example of a user-controlled object with rotation. Control the car using the up, down, left and right arrow keys. One problem with this example is that I've failed to implement a braking system so once the car starts moving it can't stop!</p>
+        </div>
+        
+        <!--hr used to seperate rows -->
+        <hr class="main-hr">
+        
+        <!-- row used to hold spaceship app -->
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<div class="walker-holder" style="height:500px;">
+            	<iframe class="astrds" src="js/extras/rotation/spaceship/index.html"></iframe>
+            </div>
+        </div>
+        
+        <!-- row used to hold text explaining spaceship app -->       
+        <div class="row" style="width:90%; margin-left:auto; margin-right:auto;">
+        	<p class="extras-full text-center">To wrap up rotation, I have an example of the ship I used in my <a href="asteroids.html">asteroids</a> page without any of the asteroids around to help show how the ship itself works. The ship essentially rotates around an axis in a circular motion, when thrust is applied using the z key the ship moves in the direction it's facing. I also added a small red flash on the ship's thrusters to make it ever so slightly less boring!</p>
+        </div>
+    </div><!--container-fluid-main-->
+</div><!--container-fluid-frame-->
+
+<!--footer-->
+<!--intended to hold links but ran out of development time -->
+<div class="container-fluid-bottom-links">
+	
+</div>
+<!-- div to hold copyright statement -->
+<div class="footer">
+	<p class="copyright-state">&copy; Ben Crawford 2017</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<mat-expansion-panel [disabled]="DataTransferService.moveData.moveActive"
+  *ngIf="
+  !(
+    DataTransferService.moveData.moveActive 
+    &&
+    (
+      !DataTransferService.moveData.idList.includes(componentEvent.Id) 
+      || 
+      DataTransferService.moveData.event['Id'] == componentEvent.Id
+    )
+    &&
+    componentEvent.EventDateTime <= DataTransferService.moveData.event['EventDateTime']
+    &&
+    componentEvent.Id != DataTransferService.moveData.event['LinkedTimelineEventIds'][0]
+  )"
+  [hideToggle]="true"
+  (touchstart)="stopPropagation($event)"
+  (touchmove)="stopPropagation($event)"
+  (opened)="panelOpenState = true" 
+  (closed)="panelOpenState = false" 
+  [expanded]="panelOpenState"
+  [class.open-expansion-panel]="panelOpenState"
+  [class.event-highlight]="search()"
+  #eventBox
+>
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <p>
+        {{componentEvent.Title}}
+      </p>
+    </mat-panel-title>
+    <div 
+      class="severity-display"
+      [class.severity-display-low]="componentEvent.Severity == 'Low'"
+      [class.severity-display-medium]="componentEvent.Severity == 'Medium'"
+      [class.severity-display-high]="componentEvent.Severity == 'High'"
+    >
+      <span *ngIf="componentEvent.Severity == 'Low'">!</span>
+      <span *ngIf="componentEvent.Severity == 'Medium'">!!</span>
+      <span *ngIf="componentEvent.Severity == 'High'">!!!</span>
+    </div>
+    <mat-panel-description>
+      {{componentEvent.EventDateTime | date: 'd/M/yy, HH:mm '}}
+      <div class="location-icon" *ngIf="componentEvent.LocationLat == 'null'">
+        <mat-icon>location_off</mat-icon>
+      </div>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <app-event-item [timelineId]="timelineId" [event]="componentEvent" [editTabVisible]="true" [mapTabVisible]="true"></app-event-item>
+
+</mat-expansion-panel>
+
+<mat-expansion-panel
+  *ngIf="(
+    DataTransferService.moveData.moveActive 
+    &&
+    (
+      !DataTransferService.moveData.idList.includes(componentEvent.Id) 
+      || 
+      DataTransferService.moveData.event['Id'] == componentEvent.Id
+    )
+    &&
+    componentEvent.EventDateTime <= DataTransferService.moveData.event['EventDateTime']
+    &&
+    componentEvent.Id != DataTransferService.moveData.event['LinkedTimelineEventIds'][0]
+  )"
+  [hideToggle]="true"
+  (touchstart)="stopPropagation($event)"
+  (touchmove)="stopPropagation($event)"
+  [class.event-highlight]="DataTransferService.moveData.event['Id'] != componentEvent.Id"
+>
+  <mat-expansion-panel-header *ngIf="DataTransferService.moveData.event['Id'] != componentEvent.Id" (click)="moveEvent($event)">
+    <mat-panel-title>
+      <p>
+        {{componentEvent.Title}}
+      </p>
+    </mat-panel-title>
+    <div 
+      class="severity-display"
+      [class.severity-display-low]="componentEvent.Severity == 'Low'"
+      [class.severity-display-medium]="componentEvent.Severity == 'Medium'"
+      [class.severity-display-high]="componentEvent.Severity == 'High'"
+    >
+      <span *ngIf="componentEvent.Severity == 'Low'">!</span>
+      <span *ngIf="componentEvent.Severity == 'Medium'">!!</span>
+      <span *ngIf="componentEvent.Severity == 'High'">!!!</span>
+    </div>
+    <mat-panel-description>
+      {{componentEvent.EventDateTime | date: 'd/M/yy, HH:mm '}}
+      <div class="location-icon" *ngIf="componentEvent.LocationLat == 'null'">
+        <mat-icon>location_off</mat-icon>
+      </div>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-expansion-panel-header *ngIf="DataTransferService.moveData.event['Id'] == componentEvent.Id">
+    <mat-panel-title>
+      <p>
+        {{componentEvent.Title}}
+      </p>
+    </mat-panel-title>
+    <button 
+      style="margin-right:10px"
+      (click)="moveEvent($event)" 
+      mat-raised-button 
+      color="primary"
+    >
+    Unlink From Parent
+    </button>
+    <button 
+      (click)="cancelMove()"
+      mat-raised-button 
+      color="warn"
+    >
+    Cancel
+    </button>
+  </mat-expansion-panel-header>
+
+</mat-expansion-panel>
+
+<ul *ngIf="childEvents.length > 0">
+  <li *ngFor="let childEvent of childEvents">
+    <app-tree-part [timelineId]="timelineId" [componentEvent]="childEvent"></app-tree-part>
+  </li>
+  <li *ngIf="childEvents.length == 0"></li>
+</ul>

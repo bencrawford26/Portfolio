@@ -1,0 +1,1 @@
+git bash inside thi url then run 'node proxy'

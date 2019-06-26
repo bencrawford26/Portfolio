@@ -1,0 +1,34 @@
+<div>
+  <h3 md-dialog-title>{{LangService.activeLanguage.dialogDownTitle}}</h3>
+  <hr>
+  <mat-dialog-content>
+
+    <mat-list>
+      <h3 *ngIf="!finished" mat-subheader>{{totalLoaded.toFixed(2)}}MB/{{totalToLoad.toFixed(2)}}MB : {{totalProg}}% {{timeLeft}} : {{downSpeed.toFixed(2)}}MB/s</h3>
+      <h3 *ngIf="finished" mat-subheader>{{LangService.activeLanguage.dialogDownCompIn}} {{secondsElapsed}} {{LangService.activeLanguage.dialogDownSec}}</h3>
+      <mat-list-item *ngFor="let file of data.selectedFiles; let i = index">
+        <mat-icon mat-list-icon *ngIf="file.Type == 'doc'">note</mat-icon>
+        <mat-icon mat-list-icon *ngIf="file.Type != 'doc'">image</mat-icon>
+        <h4 mat-line>{{file.Title}}</h4>
+        <p mat-line>{{file.Loaded.toFixed(2)}}MB/{{file.Total.toFixed(2)}}MB</p>
+        <mat-progress-spinner diameter='32' [mode]="'determinate'" [value]="file.progress"></mat-progress-spinner>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <ng-container *ngIf="!areSureQuestion">
+      <button mat-raised-button (click)="onClose()" color="warn">{{LangService.activeLanguage.dialogUpDownClose}}</button>
+    </ng-container>
+    <ng-container *ngIf="areSureQuestion">
+
+      <p class="are-sure-q">{{LangService.activeLanguage.dialogDownAreSure}}</p>
+
+      <button mat-raised-button (click)="onClose()" color="primary">{{LangService.activeLanguage.dialogUpDownYes}}</button>
+      <button mat-raised-button (click)="areSureQuestion = false" color="warn">{{LangService.activeLanguage.dialogUpDownNo}}</button>
+
+    </ng-container>
+
+  </mat-dialog-actions>
+</div>
